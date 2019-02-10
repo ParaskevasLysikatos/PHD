@@ -11,7 +11,11 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
+<<<<<<< HEAD
   <a class="navbar-brand" href="">S.E.E.R.C</a>
+=======
+  <a class="navbar-brand" href="">SEERC</a>
+>>>>>>> 4e54f5fd49cfdbf1f1625b659b36f3172484d34f
 
   <!-- Links -->
   <ul class="navbar-nav">

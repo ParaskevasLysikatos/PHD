@@ -28,6 +28,7 @@
   <h2>Registration form</h2>
   <form  method="POST">
   @csrf
+<<<<<<< HEAD
    <!-- form for picking a date
    *pick a date and after the refresh, complete the other elements*
    -->
@@ -48,6 +49,8 @@
     </form>
     <!-- end of the form-->
 
+=======
+>>>>>>> 4e54f5fd49cfdbf1f1625b659b36f3172484d34f
     <div class="form-group">
       <label>Full Name:</label>
       <input type="text" class="form-control" id="SFullname" placeholder="Enter Full Name" name="SFullname">
@@ -107,6 +110,7 @@
     <label>Date of Birth: </label>
       <input type="date" class="form-control" id="SDoB" placeholder="Enter Date of Birth" name="SDoB">
     </div>
+<<<<<<< HEAD
    
     <script>
     jQuery(document).ready(function(){
@@ -143,6 +147,16 @@
     });
 </script>
     <!--end of script-->
+=======
+    <div class="form-group">
+    <label>Mode of Attend: </label>
+      <input type="text" class="form-control" id="SMoA" placeholder="Enter Mode of Attend" name="SMoA">
+    </div>
+    <div class="form-group">
+    <label>First Enrty: </label>
+      <input type="date" class="form-control" id="SFirstEntry" placeholder="Enter First Entry" name="SFirstEntry">
+    </div>
+>>>>>>> 4e54f5fd49cfdbf1f1625b659b36f3172484d34f
     <div class="form-group">
     <label>Expected end date of studies: </label>
       <input type="date" class="form-control" id="SYearofGraduation" placeholder="Enter Expected end date of studies" name="SYearofGraduation">
@@ -160,7 +174,10 @@
     <br><br>
   </form>
 </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e54f5fd49cfdbf1f1625b659b36f3172484d34f
 @include('errors')
 </body>
 </html>
