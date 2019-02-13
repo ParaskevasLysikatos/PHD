@@ -16,8 +16,6 @@ class CreateConnectionsTable extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->text('SFullname')->nullable();
             $table->string('ACFullname')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
         });
     }
 

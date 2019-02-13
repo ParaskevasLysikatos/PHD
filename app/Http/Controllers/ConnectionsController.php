@@ -21,12 +21,10 @@ class ConnectionsController extends BaseController
             $SFullname= $request->input('SFullname');
              session(['SelectSF' => $ACFullname]);
              session(['SelectACF' => $SFullname]);
-            $created_at= $request->input('created_at');
-            $updated_at= $request->input('updated_at');
         $display = DB::table('connections')->where('ACFullname',$ACFullname)->where('SFullname',$SFullname)->exists();
         if(!$display){
         DB::table('connections')->insert(
-            ['ACFullname' => $ACFullname , 'SFullname' => $SFullname,'created_at' =>$created_at,'updated_at' => $updated_at]
+            ['ACFullname' => $ACFullname , 'SFullname' => $SFullname]
         );
             return redirect('Assign');
         }

@@ -17,8 +17,7 @@ class CreateAcademicEmployeeTable extends Migration {
 			$table->string('ACEmail')->nullable();
 			$table->string('ACPhone')->nullable();
             $table->string('ACUsername')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+
 		});
 	}
 

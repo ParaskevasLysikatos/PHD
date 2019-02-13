@@ -29,8 +29,7 @@ class CreateStudentTable extends Migration {
 			$table->text('Ugraduate_Status')->nullable();
 			$table->text('SDepartment')->nullable();
 			$table->text('Departmental_Secretary')->nullable();
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+
 		});
 	}
 
