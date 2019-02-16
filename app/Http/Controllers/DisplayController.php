@@ -11,7 +11,8 @@ use Illuminate\Support\Collection;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Controller as BaseController;
-
+use  Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 class DisplayController extends BaseController
 {
 
@@ -90,6 +91,68 @@ class DisplayController extends BaseController
 
     public function displayStudRecord(Request $request)
     {
-        return view('StudentRecords');
+        $SFname = session('SFedit');
+        $displayRec=DB::table('studRecords')->where('SFullname','=',$SFname)->get();
+        return view('StudentRecords',['SFname' => $SFname,'displayRec'=>$displayRec]);
     }
+
+    public function SaveStudRecord(Request $request)
+    {
+        $SFname = session('SFedit');
+        request()->validate([
+            'recordStudfile' => 'required|file|unique:studRecords,record_name'
+        ]);
+        if($request->hasFile('recordStudfile')) {
+            //Get filename with the extension
+            $filenamewithExt = $request->file('recordStudfile')->getClientOriginalName();
+
+            //Get just filename
+            $filename = pathinfo($filenamewithExt, PATHINFO_FILENAME);
+
+            //Get just ext
+            $extension = $request->file('recordStudfile')->guessClientExtension();
+
+            $mytime = Carbon::now();
+            $y=$mytime->year;
+            $m=$mytime->month;
+            $d=$mytime->day;
+            //FileName to store
+            $fileNameToStore = $filename.'-'.$y.'-'.$m.'-'.$d .'.' . $extension;
+
+            $path = $request->file('recordStudfile')->storeAs('public/records', $fileNameToStore);
+            DB::table('studRecords')->insert(['SFullname'=>$SFname,'record_name'=>$fileNameToStore]);
+
+        }
+        else{
+            return redirect('StudentRecords')->withErrors("Upload failed");
+        }
+
+
+        return redirect('StudentRecords')->with('success', 'upload done successfully');
+    }
+
+    public function DownStudRecord(Request $request)
+    {
+        $selected = $request->input('recordStudfileD');
+        if(is_file((storage_path('app/public/records/' . $selected)))) {
+            return response()->download(storage_path('app/public/records/' . $selected));
+        }
+        else return redirect('StudentRecords')->withErrors("download failed");
+    }
+
+    public function DelStudRecord(Request $request)
+    {
+        $SFname = session('SFedit');
+        $selected = $request->Rec;
+        $check = DB::table('studRecords')->where('SFullname','=',$SFname)->where('record_name','=',$selected)->exists();
+        $check2=is_file((storage_path('app/public/records/' . $selected)));
+        if($check&&$check2) {
+            DB::table('studRecords')->where('SFullname','=',$SFname)->where('record_name','=',$selected)->delete();
+            Storage::delete('public/records/'.$selected);
+            return ("success");
+        }
+        else return redirect('StudentRecords')->withErrors("not found, check again");
+
+    }
+
 }

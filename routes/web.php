@@ -30,6 +30,8 @@ Route::delete('/AccEmpEdit','DeleteController@DeleteAcademic')->name('DeleteAcad
 
 Route::delete('/Assign','DeleteController@DeleteConnection')->name('DeleteCon')->middleware('admin');
 
+Route::delete('/StudentRecords','DisplayController@DelStudRecord')->name('DeleteRec')->middleware('admin');
+
 Route::post('/StudentSelect', 'EditController@displayEditStud')->middleware('admin');
 
 Route::post('/PrintSearchStudent', 'SearchController@SearchStudent')->name('SearchStud')->middleware('admin');
@@ -82,6 +84,9 @@ Route::get('/StudentRegister',['middleware' => 'admin', function()
 
 Route::get('/logout', 'LoginController@Logout');
 
+Route::post('/SaveStudRec', 'DisplayController@SaveStudRecord')->middleware('admin');;
+
+Route::post('/DownStudRec', 'DisplayController@DownStudRecord')->middleware('admin');;
 
 Route::get('/download-PDF_Academic',"SearchController@pdfA")->middleware('admin');
 
