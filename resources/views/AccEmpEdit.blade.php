@@ -19,9 +19,9 @@
 </head>
 <body>
 <br>
-<h1><center> Edit an Academic Employee</center></h1>
+<h1><center> Edit an Academic Employee:@foreach ($displayEditAc as $a) {{$a->ACFullname}} @endforeach </center></h1>
 
-<a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+<a href="AccEmpSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
 
 
 

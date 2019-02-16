@@ -18,9 +18,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><center> Edit My Profile Supervisor</center></h1>
+<h1><center> Edit My Profile Supervisor:@foreach ($displayProfSup as $psup) {{$psup->ACFullname}} @endforeach</center></h1>
 <div class="btn">
-    <a href="Supervisor"><button type="button" class="btn" style="width:80px;height:70px;margin-bottom: 30px  ;margin-top:30px;margin-left:200px;">Back</button></a>
+    <a href="Supervisor"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
 </div>
 
 

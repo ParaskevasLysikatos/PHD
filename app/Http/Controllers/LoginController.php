@@ -80,7 +80,7 @@ class LoginController extends BaseController
         }
         else
         {
-            return redirect('Login')->withErrors("Login Failed Wrong Data Passed. "." Password passed:  ".$password."   and username passed:   ".$username);
+            return redirect('Login')->withErrors("Login failed due to data given. "." Password passed:  ".$password."   and username passed:   ".$username);
         }
     }
 

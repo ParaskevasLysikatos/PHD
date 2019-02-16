@@ -19,10 +19,10 @@
 </head>
 <body>
 <br>
-<h1> <center> Edit Student </center></h1>
+<h1> <center> Edit a Student:@foreach ($displayStud as $s) {{$s->SFullname}} @endforeach </center></h1>
 
 
-    <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+    <a href="StudentSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>  <a href="StudentRecords"><button type="button" class="btn btn-success" style="width:200px; margin-right:100px; float: right">Record Student</button></a>
 
 <div class="container">
 <br>

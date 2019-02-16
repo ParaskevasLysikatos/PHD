@@ -30,7 +30,7 @@
     <br>
             <div class="content">
                 <div class="title m-b-md">
-                    <h1 style="text-align: center;">Supervisor Profile</h1>
+                    <h1 style="text-align: center;">Supervisor Profile of @foreach ($displaySuperv as $acad) {{$acad->ACFullname}} @endforeach</h1>
                 </div>
                 <table class="table table-bordered">
                     <tr>

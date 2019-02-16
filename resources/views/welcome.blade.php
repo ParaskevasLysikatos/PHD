@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Seerc</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
@@ -42,13 +42,16 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 120px;
+            }
+            a:hover {
+                background-color: yellowgreen;
             }
 
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -57,7 +60,7 @@
 
             .m-b-md {
                 margin-bottom: 30px;
-                margin-top: 20%;
+                margin-top: 15%;
             }
         </style>
     </head>
@@ -68,7 +71,7 @@
                 </div>
             </div>
                 <div class="links flex-center">
-                    <a href="Login">Login Academic Employee & Student</a>
+                    <a href="Login">Login from here</a>
                 </div>
 
     </body>

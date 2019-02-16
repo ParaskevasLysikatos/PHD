@@ -34,7 +34,7 @@
     <br>
     <div class="content">
         <div class="title m-b-md">
-            <h1 style="text-align: center;">Students Profile</h1>
+            <h1 style="text-align: center;">Students Profile of : @foreach ($displayStud as $stud) {{$stud->SFullname}} @endforeach</h1>
         </div>
     <div>
         <table class="table table-bordered">

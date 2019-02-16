@@ -53,12 +53,6 @@ class DisplayController extends BaseController
     }
 
 
-    public function displayDirector(Request $request)
-    {
-        $ACUname = $request->session()->get('Uname');
-        $displayDir = DB::table('academic_employees')->where('ACUsername',$ACUname)->get();
-        return view('Director', ['displayDir' => $displayDir]);
-    }
 
     public function displayConnections()
     {
@@ -92,5 +86,10 @@ class DisplayController extends BaseController
         $SUname = $request->session()->get('Uname');
         $displayProfStud = DB::table('students')->where('SUsername',$SUname)->get();
         return view('MyProfileStudent', ['displayProfStud' => $displayProfStud]);
+    }
+
+    public function displayStudRecord(Request $request)
+    {
+        return view('StudentRecords');
     }
 }

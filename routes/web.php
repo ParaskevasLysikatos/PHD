@@ -47,7 +47,7 @@ Route::get('/Student', 'DisplayController@displayStud')->middleware('student');
 
 Route::get('/Admin', 'DisplayController@displayEmp')->middleware('admin');
 
-Route::get('/Director', 'DisplayController@displayDirector')->middleware('director');
+Route::get('/StudentRecords', 'DisplayController@displayStudRecord')->middleware('admin');
 
 Route::get('/Supervisor', 'DisplayController@displaySuperv')->middleware('supervisor');
 
