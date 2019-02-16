@@ -117,7 +117,7 @@ class DisplayController extends BaseController
             $m=$mytime->month;
             $d=$mytime->day;
             //FileName to store
-            $fileNameToStore = $filename.'-'.$y.'-'.$m.'-'.$d .'.' . $extension;
+            $fileNameToStore = $filename.'-'.$y.'-'.$m.'-'.$d.'-'.$SFname.'.' . $extension;
 
             $path = $request->file('recordStudfile')->storeAs('public/records', $fileNameToStore);
             DB::table('studRecords')->insert(['SFullname'=>$SFname,'record_name'=>$fileNameToStore]);
