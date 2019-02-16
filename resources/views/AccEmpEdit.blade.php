@@ -21,7 +21,7 @@
 <br>
 <h1><center> Edit an Academic Employee</center></h1>
 
-    <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:10px;" >Back</button></a>
+<a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
 
 
 
@@ -81,6 +81,7 @@
         <div class="buttons">
         <center><button type="submit"  class="btn btn-primary" style="width:90px;">Edit</button></center>
             @endforeach
+        </div>
     </form>
   
     <form  method="Post"  action="{{route('DeleteAcad')}}">

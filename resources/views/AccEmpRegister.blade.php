@@ -20,7 +20,7 @@
     <body>
     <br>
     <h1><center> Register an Academic Employee</center></h1>
-    <a href="Admin"><button type="button" style="width:90px; margin-left:10px;" class="btn btn-success" style="margin-left:20px;">Back</button></a>
+    <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
 
 
   
