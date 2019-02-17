@@ -8,27 +8,25 @@ class CreateStudentTable extends Migration {
 	public function up()
 	{
 		Schema::create('students', function(Blueprint $table) {
-			$table->string('RN')->nullable();
+			$table->text('RN')->nullable();
             $table->string('SUsername')->nullable();
-			$table->string('SEmail')->nullable();
+			$table->text('SEmail')->nullable();
 			$table->text('SFullname')->nullable();
-			$table->string('Gender')->nullable();
+			$table->string('SGender')->nullable();
 			$table->string('SPhone')->nullable();
 			$table->text('SCountry')->nullable();
-			$table->string('Current_Employment')->nullable();
-			$table->string('Last_Supervision_Record')->nullable();
-			$table->string('Payment')->nullable();
-			$table->string('Student_Record')->nullable();
-			$table->date('Date_Of_Birth')->nullable();
-			$table->date('FirstEntry')->nullable();
-			$table->date('Year_of_Graduation')->nullable();
-			$table->string('Mode_of_Attend')->nullable();
-			$table->string('SPassword')->nullable();
-			$table->text('Topic')->nullable();
-			$table->date('Submission_Date')->nullable();
-			$table->text('Ugraduate_Status')->nullable();
+			$table->string('SCurrentEmployment')->nullable();
+			$table->text('SPayment')->nullable();
+			$table->date('SDateOfBirth')->nullable();
+			$table->date('SFirstEntry')->nullable();
+			$table->date('SYearOfGraduation')->nullable();
+			$table->string('SModeOfAttend')->nullable();
+			$table->text('SPassword')->nullable();
+			$table->text('STopic')->nullable();
+			$table->date('SubmissionDate')->nullable();
+			$table->text('SUpgradeStatus')->nullable();
 			$table->text('SDepartment')->nullable();
-			$table->text('Departmental_Secretary')->nullable();
+			$table->text('SDepartmentalSec')->nullable();
 
 		});
 	}

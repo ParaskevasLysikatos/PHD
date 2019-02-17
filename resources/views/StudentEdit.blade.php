@@ -42,7 +42,7 @@
 
         <div class="form-group">
             <label>Registration Number:</label>
-            <input type="text" class="form-control" id="SRnumber" placeholder="Enter Registeration Number" name="SRnumber" value="{{$s->RN}}">
+            <input type="text" class="form-control" id="RN" placeholder="Enter Registeration Number" name="RN" value="{{$s->RN}}">
         </div>
 
         <div class="form-group">
@@ -56,8 +56,8 @@
         </div>
         <div class="form-group">
             <label>Department: </label>
-            <select class="form-control" id="SDepartment" name="SDepartment" value="{{$s->SDepartment}}" required>
-                <option></option>
+            <select class="form-control" id="SDepartment" name="SDepartment"  required>
+                <option>{{$s->SDepartment}}</option>
                 <option>Computer Science</option>
                 <option>Psychology</option>
                 <option>Business</option>
@@ -69,11 +69,11 @@
         </div>
         <div class="form-group">
             <label>PhD Topic: </label>
-            <input type="text" class="form-control" id="STopic" placeholder="Enter Topic" name="STopic" value="{{$s->Topic}}">
+            <input type="text" class="form-control" id="STopic" placeholder="Enter Topic" name="STopic" value="{{$s->STopic}}">
         </div>
         <div class="form-group">
             <label>Deparmental Secretary: </label>
-            <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$s->Departmental_Secretary}}">
+            <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$s->SDepartmentalSec}}">
         </div>
         <div class="form-group">
             <label>Country: </label>
@@ -81,36 +81,48 @@
         </div>
         <div class="form-group">
             <label>Gender: </label>
-            <select class="form-control" id="SGender" name="SGender"  value="{{$s->Gender}}">
-                <option></option>
+            <select class="form-control" id="SGender" name="SGender" >
+                <option>{{$s->SGender}}</option>
                 <option>Male</option>
                 <option>Female</option>
             </select>
         </div>
         <div class="form-group">
             <label>Date of Birth: </label>
-            <input type="date" class="form-control" id="SDoB" placeholder="Enter Date of Birth" name="SDoB" value="{{$s->Date_Of_Birth}}">
+            <input type="date" class="form-control" id="SDateOfBirth" placeholder="Enter Date of Birth" name="SDateOfBirth" value="{{$s->SDateOfBirth}}">
         </div>
         <div class="form-group">
             <label>Mode of Attend: </label>
-            <input type="text" class="form-control" id="SMoA" placeholder="Enter Mode of Attend" name="SMoA" value="{{$s->Mode_of_Attend}}">
+            <select  class="form-control" id="SModeOfAttend" placeholder="Enter Mode of Attend" name="SModeOfAttend">
+                <option> {{$s->SModeOfAttend}}</option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+            </select>
         </div>
         <div class="form-group">
             <label>First Enrty: </label>
-            <input type="date" class="form-control" id="SFirstEntry" placeholder="Enter First Entry" name="SFirstEntry" value="{{$s->FirstEntry}}">
+            <input type="date" class="form-control" id="SFirstEntry" placeholder="Enter First Entry" name="SFirstEntry" value="{{$s->SFirstEntry}}">
         </div>
         <div class="form-group">
             <label>Expected end date of studies: </label>
-            <input type="date" class="form-control" id="SYearofGraduation" placeholder="Enter Expected end date of studies" name="SYearofGraduation" value="{{$s->Year_of_Graduation}}">
+            <input type="date" class="form-control" id="SYearOfGraduation" placeholder="Enter Expected end date of studies" name="SYearOfGraduation" value="{{$s->SYearOfGraduation}}">
         </div>
         <div class="form-group">
-            <label>Undergraduate Status: </label>
-            <input type="text" class="form-control" id="SUgraduateStatus" placeholder="Enter Expected Undergraduate Status" name="SUgraduateStatus" value="{{$s->Ugraduate_Status}}">
+            <label>Upgrade Status: </label>
+            <input type="text" class="form-control" id="SUpgradeStatus" placeholder="Enter Expected Upgrade Status" name="SUpgradeStatus" value="{{$s->SUpgradeStatus}}">
         </div>
         <div class="form-group">
             <label>Fee Waiver / Paying: </label>
-            <input type="text" class="form-control" id="SFWP" placeholder="Payment" name="SFWP" value="{{$s->Payment}}">
+            <input type="text" class="form-control" id="SPayment" placeholder="Payment" name="SPayment" value="{{$s->SPayment}}">
         </div>
+            <div class="form-group">
+                <label>Submission Date: </label>
+                <input type="date" class="form-control" id="SubmissionDate" placeholder="Submission Date" name="SubmissionDate"  value="{{$s->SubmissionDate}}">
+            </div>
+            <div class="form-group">
+                <label>Current Employment: </label>
+                <input type="text" class="form-control" id="SCurrentEmployment" placeholder="Current Employment" name="SCurrentEmployment"  value="{{$s->SCurrentEmployment}}">
+            </div>
         @endforeach
         <center><button type="submit" style="width:90px;" class="btn btn-primary">Edit</button></center>
     </form>

@@ -8,6 +8,7 @@ use App\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use  Carbon\Carbon;
 class RegisterController extends BaseController
 {
 
@@ -51,7 +52,7 @@ class RegisterController extends BaseController
         request()->validate([
             'SFullname'=>'required|unique:students,SFullname',
             'SUsername'=>'required|unique:students,SUsername',
-            'SRnumber'=>'required',
+            'RN'=>'required',
             'SPassword'=>'required',
             'SEmail'=>'required',
             'SDepartment'=>'required',
@@ -60,7 +61,7 @@ class RegisterController extends BaseController
 
         $SFullname = $request->input('SFullname');
         $SUsername = $request->input('SUsername');
-        $SRnumber = $request->input('SRnumber');
+        $RN = $request->input('RN');
         $SPassword = $request->input('SPassword');
         $SEmail = $request->input('SEmail');
         $SDepartment = $request->input('SDepartment');
@@ -69,31 +70,49 @@ class RegisterController extends BaseController
         $SCountry = $request->input('SCountry');
         $STopic = $request->input('STopic');
         $SGender = $request->input('SGender');
-        $SDoB = $request->input('SDoB');
-        $SMoA = $request->input('SMoA');
+        $SDateOfBirth = $request->input('SDateOfBirth');
+        $SModeOfAttend = $request->input('SModeOfAttend');
         $SFirstEntry = $request->input('SFirstEntry');
-        $SFWP = $request->input('SFWP');
-       $SYearofGraduation=$request->input( 'SYear_of_Graduation');
-        $SUgraduateStatus= $request->input('SUgraduate_Status');
+        $SPayment = $request->input('SPayment');
+       $SYearOfGraduation=$request->input( 'SYearOfGraduation');
+        $SUpgradeStatus= $request->input('SUpgradeStatus');
+        $SCurrentEmployment = $request->input ('SCurrentEmployment');
+        $SubmissionDate= $request->input('SubmissionDate');
+
+        if($SModeOfAttend!=null&&$SFirstEntry!=null&&$SYearOfGraduation==null)
+        {
+                if($SModeOfAttend=="Full-time")
+             {
+              $SYearOfGraduation=new Carbon($SFirstEntry);
+              $SYearOfGraduation=$SYearOfGraduation->addYears(1);
+             }
+            if($SModeOfAttend=="Part-time")
+            {
+                $SYearOfGraduation=new Carbon($SFirstEntry);
+                $SYearOfGraduation=$SYearOfGraduation->addYears(2);
+            }
+        }
 
         DB::table('students')->insert([
             'SFullname' => $SFullname,
-            'RN' => $SRnumber,
+            'RN' => $RN,
             'SUsername'=> $SUsername,
             'SPassword' => bcrypt($SPassword),
             'SEmail'=> $SEmail,
             'SDepartment'=> $SDepartment,
             'SPhone'=> $SPhone,
-            'Topic'=> $STopic,
-            'Departmental_Secretary'=> $SDepartmentalSec,
+            'STopic'=> $STopic,
+            'SDepartmentalSec'=> $SDepartmentalSec,
             'SCountry'=> $SCountry,
-            'Gender'=> $SGender,
-            'Date_Of_Birth'=> $SDoB,
-            'Mode_of_Attend'=> $SMoA,
-            'FirstEntry'=> $SFirstEntry,
-            'Year_of_Graduation'=> $SYearofGraduation,
-            'Ugraduate_Status'=> $SUgraduateStatus,
-            'Payment'=> $SFWP
+            'SGender'=> $SGender,
+            'SDateOfBirth'=> $SDateOfBirth,
+            'SModeOfAttend'=> $SModeOfAttend,
+            'SFirstEntry'=> $SFirstEntry,
+            'SYearOfGraduation'=> $SYearOfGraduation,
+            'SUpgradeStatus'=> $SUpgradeStatus,
+            'SPayment'=> $SPayment,
+            'SCurrentEmployment'=>$SCurrentEmployment,
+            'SubmissionDate'=>$SubmissionDate,
         ]);
         return redirect('Admin');
     }

@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label>Registration Number:</label>
-            <input type="text" class="form-control" id="SRnumber" placeholder="Enter Registeration Number" name="SRnumber">
+            <input type="text" class="form-control" id="RN" placeholder="Enter Registeration Number" name="RN">
         </div>
         <div class="form-group">
             <label>Username: </label>
@@ -85,27 +85,39 @@
         </div>
         <div class="form-group">
             <label>Date of Birth: </label>
-            <input type="date" class="form-control" id="SDoB" placeholder="Enter Date of Birth" name="SDoB">
+            <input type="date" class="form-control" id="SDateOfBirth" placeholder="Enter Date of Birth" name="SDateOfBirth">
         </div>
         <div class="form-group">
             <label>Mode of Attend: </label>
-            <input type="text" class="form-control" id="SMoA" placeholder="Enter Mode of Attend" name="SMoA">
+            <select  class="form-control" id="SModeOfAttend" placeholder="Enter Mode of Attend, needed for automatic end of studies" name="SModeOfAttend">
+                <option></option>
+                <option>Full-time</option>
+                <option>Part-time</option>
+            </select>
         </div>
         <div class="form-group">
             <label>First Enrty: </label>
-            <input type="date" class="form-control" id="SFirstEntry" placeholder="Enter First Entry" name="SFirstEntry">
+            <input type="date" class="form-control" id="SFirstEntry" placeholder="Enter First Entry, needde for automatic end of studies" name="SFirstEntry">
         </div>
         <div class="form-group">
             <label>Expected end date of studies: </label>
-            <input type="date" class="form-control" id="SYearofGraduation" placeholder="Enter Expected end date of studies" name="SYearofGraduation">
+            <input type="date" class="form-control" id="SYearOfGraduation" placeholder="Enter Expected end date of studies, leave it null for automatic fill" name="SYearOfGraduation">
         </div>
         <div class="form-group">
             <label>Undergraduate Status: </label>
-            <input type="text" class="form-control" id="SUgraduateStatus" placeholder="Enter Expected Undergraduate Status" name="SUgraduateStatus">
+            <input type="text" class="form-control" id="SUpgradeStatus" placeholder="Enter Expected Upgrade Status" name="SUpgradeStatus">
         </div>
         <div class="form-group">
             <label>Fee Waiver / Paying: </label>
-            <input type="text" class="form-control" id="SFWP" placeholder="Payment" name="SFWP">
+            <input type="text" class="form-control" id="SPayment" placeholder="Payment" name="SPayment">
+        </div>
+        <div class="form-group">
+            <label>Submission Date: </label>
+            <input type="date" class="form-control" id="SubmissionDate" placeholder="Submission Date" name="SubmissionDate">
+        </div>
+        <div class="form-group">
+            <label>Current Employment: </label>
+            <input type="text" class="form-control" id="SCurrentEmployment" placeholder="Current Employment" name="SCurrentEmployment">
         </div>
 
         <center><button type="submit" class="btn btn-primary">Submit</button></center>

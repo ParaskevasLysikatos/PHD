@@ -11,11 +11,11 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
-<<<<<<< HEAD
+
   <a class="navbar-brand" href="">S.E.E.R.C</a>
-=======
+
   <a class="navbar-brand" href="">SEERC</a>
->>>>>>> 4e54f5fd49cfdbf1f1625b659b36f3172484d34f
+
 
   <!-- Links -->
   <ul class="navbar-nav">
@@ -163,12 +163,7 @@
             <th>Fullname</th>
             <th>ACPassword</th>
             <th>Role</th>
-        <!---
-            <th>Email</th>
-            <th>Deparment</th>
-            <th>Country</th>
-            <th>Phone</th>
-             -->
+
             @foreach ($display as $accEmp)
                 <tr>
                     <td> {{$accEmp->ACUsername}} </td>
@@ -176,12 +171,7 @@
                     <td> {{$accEmp->ACFullname}} </td>
                     <td> {{$accEmp->ACPassword}} </td>
                     <td> {{$accEmp->Role}} </td>
-                <!---
-                    <td> {{$accEmp->ACEmail}} </td>
-                    <td> {{$accEmp->ACDepartment}} </td>
-                    <td> {{$accEmp->ACCountry}} </td>
-                    <td> {{$accEmp->ACPhone}} </td>
-                     -->
+
                 </tr>
            @endforeach
 
@@ -192,45 +182,20 @@
         <table class="table table-bordered">
             <th>RegistrationNumber</th>
             <th>SFullname</th>
-            <!---
-            <th>SUsername</th>
-            <th>SPassword</th>
-            <th>Gender</th>
-            <th>SEmail</th>
-            <th>SDepartment</th>
-            <th>SPhone</th>
-            <th>SCountry</th>
-            <th>Payment</th>
-            <th>Date of Birth</th>
-            <th>First Entry</th>
-            <th>Year of graduation</th>
-            <th>Mode of Attend</th>
-            <th>Topic</th>
-            <th>Undergraduate Status</th>
-            <th>Departmental Secretary</th>
-            -->
             
             @foreach ($displayStud as $stud)
                 <tr>
                     <td> {{$stud->RN}} </td>
                     <td> {{$stud->SFullname}}</td> 
-                    <!---
-                    <td> <a href="StudentEdit">{{$stud->SUsername}}</a> </td>
+
+                    <td> {{$stud->SUsername}}</td>
                     <td> {{$stud->SPassword}} </td>
-                    <td> {{$stud->Gender}} </td>
                     <td> {{$stud->SEmail}} </td>
                     <td> {{$stud->SDepartment}} </td>
                     <td> {{$stud->SPhone}} </td>
                     <td> {{$stud->SCountry}} </td>
-                    <td> {{$stud->Payment}} </td>
-                    <td> {{$stud->Date_Of_Birth}} </td>
-                    <td> {{$stud->FirstEntry}} </td>
-                    <td> {{$stud->Year_of_Graduation}} </td>
-                    <td> {{$stud->Mode_of_Attend}} </td>
-                    <td> {{$stud->Topic}} </td>
-                    <td> {{$stud->Ugraduate_Status}} </td>
-                    <td> {{$stud->Departmental_Secretary}} </td>
-                     !-->
+
+
                 </tr>
 
             @endforeach

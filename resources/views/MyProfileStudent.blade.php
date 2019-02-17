@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
             <label>Deparmental Secretary: </label>
-            <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$pStud->Departmental_Secretary}}">
+            <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$pStud->SDepartmentalSec}}">
         </div>
         <div class="form-group">
             <label>Country: </label>
@@ -53,11 +53,11 @@
         </div>
         <div class="form-group">
             <label>Date of Birth: </label>
-            <input type="date" class="form-control" id="SDoB" placeholder="Enter Date of Birth" name="SDoB" value="{{$pStud->Date_Of_Birth}}">
+            <input type="date" class="form-control" id="SDoB" placeholder="Enter Date of Birth" name="SDoB" value="{{$pStud->SDateOfBirth}}">
         </div>
         <div class="form-group">
             <label>Mode of Attend: </label>
-            <input type="text" class="form-control" id="SMoA" placeholder="Enter Mode of Attend" name="SMoA" value="{{$pStud->Mode_of_Attend}}">
+            <input type="text" class="form-control" id="SMoA" placeholder="Enter Mode of Attend" name="SMoA" value="{{$pStud->SModeOfAttend}}">
         </div>
 
         @endforeach

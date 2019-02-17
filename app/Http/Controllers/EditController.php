@@ -37,11 +37,11 @@ class EditController extends BaseController
         $SFedit = $req->session()->get('SFedit');
         $displayStud = DB::table('students')->where('SFullname',$SFedit)
             ->update(['SUsername' => $req->input('SUsername'),'SFullname' => $req->input('SFullname'),'SPassword' =>bcrypt($req->input('SPassword')),
-                'RN' =>$req->input('SRnumber'),'SEmail' =>$req->input('SEmail'),'SDepartment' =>$req->input('SDepartment'),
-                    'SPhone' =>$req->input('SPhone'),'Topic' =>$req->input('STopic'),'Departmental_Secretary' =>$req->input('SDepartmentalSec'),
-                'SCountry' =>$req->input('SCountry'),'Gender' =>$req->input('SGender'),'Date_Of_Birth' =>$req->input('SDoB'),
-                'Mode_of_Attend' =>$req->input('SMoA'),'FirstEntry' =>$req->input('SFirstEntry'),'Year_of_Graduation' =>$req->input('SYearofGraduation'),
-                'Ugraduate_Status' =>$req->input('SUgraduateStatus'),'Payment' =>$req->input('SFWP')] );
+                'RN' =>$req->input('RN'),'SEmail' =>$req->input('SEmail'),'SDepartment' =>$req->input('SDepartment'),
+                    'SPhone' =>$req->input('SPhone'),'STopic' =>$req->input('STopic'),'SDepartmentalSec' =>$req->input('SDepartmentalSec'),
+                'SCountry' =>$req->input('SCountry'),'SGender' =>$req->input('SGender'),'SDateOfBirth' =>$req->input('SDateOfBirth'),
+                'SModeOfAttend' =>$req->input('SModeOfAttend'),'SFirstEntry' =>$req->input('SFirstEntry'),'SYearOfGraduation' =>$req->input('SYearOfGraduation'),
+                'SUpgradeStatus' =>$req->input('SUpgradeStatus'),'SPayment' =>$req->input('SPayment'),'SCurrentEmployment'=>$req->input('SCurrentEmployment'),'SubmissionDate'=>$req->input('SubmissionDate')] );
             return redirect('Admin');
     }
 
@@ -68,9 +68,9 @@ class EditController extends BaseController
         $displayStud = DB::table('students')->where('SUsername',$SUname)
             ->update(['SPassword' =>bcrypt($req->input('SPassword')),
                 'SEmail' =>$req->input('SEmail'),
-                'SPhone' =>$req->input('SPhone'),'Departmental_Secretary' =>$req->input('SDepartmentalSec'),
-                'SCountry' =>$req->input('SCountry'),'Date_Of_Birth' =>$req->input('SDoB'),
-                'Mode_of_Attend' =>$req->input('SMoA')]);
+                'SPhone' =>$req->input('SPhone'),'SDepartmentalSec' =>$req->input('SDepartmentalSec'),
+                'SCountry' =>$req->input('SCountry'),'SDateOfBirth' =>$req->input('SDateOfBirth'),
+                'SModeOfAttend' =>$req->input('SModeOfAttend')]);
         return redirect('Student');
     }
 
