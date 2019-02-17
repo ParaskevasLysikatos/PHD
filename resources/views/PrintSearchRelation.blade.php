@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="{{ app()->getLocale() }}">
 <head>
-    <title> Select a Student</title>
-
+    <title> Print Search Relation Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -10,8 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-
 <!-- new nav starts here-->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
@@ -111,7 +108,6 @@
                     <option></option>
                     <option value="Admin">Admin</option>
                     <option value="Supervisor">Supervisor</option>
-
                 </select>
             </div>
 
@@ -188,22 +184,27 @@
     </div>
 </div>
 <br>
-
-<center><h1> Select a Student </h1></center>
-
-<center><form method="post">
-        @csrf
-        <br>
-        <label>Select one:</label>
-        <select class="form-control" type="text" name="SFullname" size="6" style="width: 400px; height:300px;font-size:18px;">
-            @foreach ($displayStudent as $Stud)
-                <option value="{{$Stud->SFullname}}" >{{$Stud->SFullname}}</option>
+<div class="content">
+    <div class="title m-b-md">
+        <h2 style="text-align: center;">Print Search Relation</h2>
+    </div>
+    <br>
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th>Academic Fullname</th>
+                <th>Student Fullname</th>
+            </tr>
+            @foreach ($dataRel as $r)
+                <tr>
+                    <td> {{$r->ACFullname}} </td>
+                    <td> {{$r->SFullname}}</td>
+                </tr>
             @endforeach
-        </select>
-        <br><br>
-        <button type="submit" class="btn btn-primary" style="font-size:18px;">Find student</button>
-    </form></center>
-<br><br>
-
+        </table>
+    </div>
+    <br>
+    <center><a href ="{{url('download-PDF_Relation')}}" style="font-size: 26px;">Download pdf Relation</a></center>
+</div>
 </body>
 </html>

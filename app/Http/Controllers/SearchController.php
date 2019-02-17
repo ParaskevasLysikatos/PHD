@@ -111,6 +111,25 @@ class SearchController extends BaseController
         return view('PrintSearchAcademic', ['dataAcad' => $dataAcad]);
     }
 
+    public function SearchRelation(Request $request)
+    {
+        $ACFullname = $request->input('ACFullname');
+        session(['RaF' => $ACFullname]);
+        $SFullname= $request->input('SFullname');
+        session(['RsF' => $SFullname]);
+        $query2 = DB::table( 'connections' );
+
+        if($ACFullname!=''){
+            $query2->where("ACFullname",'like',"%$ACFullname%");
+        }
+
+        if($SFullname!=''){
+            $query2->where("SFullname",'like',"%$SFullname%");
+        }
+        $dataRel= $query2->get();
+        return view('PrintSearchRelation', ['dataRel' => $dataRel]);
+    }
+
     public function pdfA()
     {
         $query2 = DB::table( 'academic_employees' );
@@ -195,6 +214,25 @@ class SearchController extends BaseController
         $mytime->toDateTimeString();
         $pdf =  PDF::loadView('/pdfstudent',['dataS'=>$dataS]);
         return $pdf->download('StudentSearchPDF'.$mytime.'.pdf');
+    }
+
+    public function pdfR()
+    {
+        $SFullname = Session::get('RsF');
+        $ACFullname = Session::get('RaF');
+        $query = DB::table( 'connections' );
+        if($SFullname!=''){
+            $query->where("SFullname",'like',"%$SFullname%");
+        }
+
+        if($ACFullname!=''){
+            $query->where("ACFullname",'like',"%$ACFullname%");
+        }
+        $dataR = $query->get();
+        $mytime = Carbon::now();
+        $mytime->toDateTimeString();
+        $pdf =  PDF::loadView('/pdfrelation',['dataR'=>$dataR]);
+        return $pdf->download('RelationSearchPDF'.$mytime.'.pdf');
 
     }
 

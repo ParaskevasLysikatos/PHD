@@ -19,9 +19,9 @@
 </head>
 <body>
 <br>
-<h1><center> Edit an Academic Employee:@foreach ($displayEditAc as $a) {{$a->ACFullname}} @endforeach </center></h1>
+<h2><center> Edit an Academic Employee:@foreach ($displayEditAc as $a) {{$a->ACFullname}} @endforeach </center></h2>
 
-<a href="AccEmpSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+<a href="AccEmpSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size:22px;">Back</button></a>
 
 
 
@@ -79,7 +79,7 @@
         </div>
 
         <div class="buttons">
-        <center><button type="submit"  class="btn btn-primary" style="width:90px;">Edit</button></center>
+        <center><button type="submit"  class="btn btn-primary" style="width:90px; font-size:20px;">Edit</button></center>
             @endforeach
         </div>
     </form>
@@ -88,7 +88,7 @@
         @csrf
         @method('delete')
         <br>
-        <center> <button type="submit" class="btn btn-danger" style="width:90px;">Delete</button></center>
+        <center> <button type="submit" class="btn btn-danger" style="width:90px; font-size:22px;">Delete</button></center>
         <br>
     </form>
     </div>

@@ -10,28 +10,32 @@
     </head>
     <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark topnav">
+        <div class="container-fluid">
         <!-- Brand -->
-        <a class="navbar-brand" href="">SEERC</a>
-
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"> <img src="seerc.jpg" width="180" alt="" height="50" style="vertical-align:middle;" > </a>
+            </div>
         <!-- Links -->
-        <ul class="navbar-nav">
+        <ul class="nav navbar-nav">
+
             <li class="nav-item">
-                <a class="nav-link" href="Supervisor">Home</a>
+                <a class="nav-link"  style="font-size:22px;" href="MyProfileSupervisor">Supervisor's Profile</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="MyProfileSupervisor">Supervisor's Profile</a>
-            </li>
-            <!-- Logout -->
-         <div class="topnav-right">
-            <a class="navbar-brand" href="{{ url('/logout') }}">Logout</a>
-        </div>
         </ul>
+            <!-- Logout -->
+        <ul class="nav navbar-nav navbar-right">
+            <li >
+                <a class="navbar-brand"  href="{{ url('/logout') }}">Logout</a>
+          </li>
+        </ul>
+        </div>
     </nav>
     <br>
             <div class="content">
                 <div class="title m-b-md">
-                    <h1 style="text-align: center;">Supervisor Profile of @foreach ($displaySuperv as $acad) {{$acad->ACFullname}} @endforeach</h1>
+                    <h2 style="text-align: center;">Supervisor's Profile of @foreach ($displaySuperv as $acad){{$acad->ACFullname}}@endforeach</h2>
                 </div>
+                <br>
                 <table class="table table-bordered">
                     <tr>
                     <th>ACUsername</th>
@@ -52,7 +56,7 @@
                 </table>
                 <div class="container">
                     <center><h2> View the relations</h2></center>
-                    <br><br>
+                    <br>
                     <table class="table table-hover">
                         <thead>
                         <tr>

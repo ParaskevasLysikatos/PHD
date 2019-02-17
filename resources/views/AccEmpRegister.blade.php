@@ -19,8 +19,8 @@
     </head>
     <body>
     <br>
-    <h1><center> Register an Academic Employee</center></h1>
-    <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+    <h2><center> Register an new Academic Employee</center></h2>
+    <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size:22px;">Back</button></a>
 
 
   
@@ -75,7 +75,7 @@
     <label>Title: </label>
       <input type="text" class="form-control" id="ACTitle" placeholder="Enter Country" name="ACTitle">
     </div>
-    <center><button type="submit" class="btn btn-primary">Submit</button></center>
+    <center><button type="submit" class="btn btn-primary" style="font-size:20px;">Submit</button></center>
     <br><br>
 </form>
 </div>

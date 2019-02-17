@@ -31,7 +31,7 @@
                 <input  type="Password" name="Password" class="form-control"  placeholder="Enter Password">
             </div><br>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" style="font-size:22px;">Submit</button>
             </form> 
             </center>
     @include('errors')

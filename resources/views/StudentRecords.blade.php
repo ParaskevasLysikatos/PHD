@@ -20,20 +20,21 @@
 </head>
 <body>
 <br>
-<h1> <center> Record of Student: {{$SFname}} </center></h1>
+<h2> <center> Record of Student: {{$SFname}} </center></h2>
 
 
-<a href="StudentSelect"><button type="button" class="btn btn-success  btn-lg" style="width:90px; margin-left:100px;">Back</button></a>
+<a href="StudentSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size: 22px;">Back</button></a>
 
 <div class="container">
     <br>
-    <h2>Upload Form</h2>
+    <h3>Upload Form</h3>
     <form method="post" action="{{url('/SaveStudRec')}}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <input type="file" class="form-control-file  btn-lg" name="recordStudfile"/>
+            <input type="file" class="form-control-file" style="font-size: 22px;" name="recordStudfile"/>
         </div>
-        <button type="submit" class="btn btn-primary  btn-lg" style="margin-left: 100px;">Submit</button>
+        <br>
+        <button type="submit" class="btn btn-primary  " style="margin-left: 100px;font-size: 22px;">Submit</button>
     </form>
     <br>
     @if (\Session::has('success'))
@@ -44,24 +45,23 @@
         </div>
     @endif
     <br>
-    <h3> Select a record of {{$SFname}}  </h3></center>
+    <center><h3> Select a record of {{$SFname}}  </h3></center>
 
     <center><form method="post" action="{{url('/DownStudRec')}}">
             @csrf
-            <br>
-            <label>Record:</label>
-            <select id="rec" class="form-control" type="text" name="recordStudfileD" size="6" style="width: 600px; height:200px;">
+            <label>Records:</label>
+            <select id="rec" class="form-control" type="text" name="recordStudfileD" size="6" style="width: 600px; height:200px; font-size: 18px;">
                 @foreach ($displayRec as $r)
                     <option value="{{$r->record_name}}" >{{$r->record_name}}</option>
                 @endforeach
             </select>
             <br><br>
-            <button type="submit" class="btn btn-primary  btn-lg">Download</button>
+            <button type="submit" class="btn btn-primary " style="font-size: 20px;">Download</button>
         </form></center>
 <br>
     <form  id="formdelete" >
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <center><button type="submit" id="delete" style="margin:12px;"  class="btn btn-danger  btn-lg">Delete</button></center>
+        <center><button type="submit" id="delete" style="margin:12px; font-size: 24px; width: 120px;"  class="btn btn-danger ">Delete</button></center>
     </form>
     <script>
         jQuery(document).ready(function(){

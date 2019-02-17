@@ -19,10 +19,10 @@
 </head>
 <body>
 <br>
-<h1> <center> Edit a Student:@foreach ($displayStud as $s) {{$s->SFullname}} @endforeach </center></h1>
+<h2> <center> Edit a Student:@foreach ($displayStud as $s) {{$s->SFullname}} @endforeach </center></h2>
 
 
-    <a href="StudentSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>  <a href="StudentRecords"><button type="button" class="btn btn-success" style="width:200px; margin-right:100px; float: right">Record Student</button></a>
+    <a href="StudentSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;font-size:22px;">Back</button></a>  <a href="StudentRecords"><button type="button" class="btn btn-success" style="width:200px; margin-right:100px; font-size:20px; float: right">Record Student</button></a>
 
 <div class="container">
 <br>
@@ -58,9 +58,18 @@
             <label>Department: </label>
             <select class="form-control" id="SDepartment" name="SDepartment"  required>
                 <option>{{$s->SDepartment}}</option>
-                <option>Computer Science</option>
-                <option>Psychology</option>
-                <option>Business</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Electronic and Electrical Engineering">Electronic and Electrical Engineering</option>
+            <option value="Economics">Economics</option>
+            <option value="English Language & Linguistics">English Language & Linguistics</option>
+            <option value="Geography">Geography</option>
+            <option value="Information School">Information School</option>
+            <option value="Law">Law</option>
+            <option value="Management School">Management School</option>
+            <option value="Politics">Politics</option>
+            <option value="Psychology">Psychology</option>
+            <option value="Sociological Studies">Sociological Studies</option>
+            <option value="School of Health and Related Research (ScHARR)">School of Health and Related Research (ScHARR)</option>
             </select>
         </div>
         <div class="form-group">
@@ -124,17 +133,17 @@
                 <input type="text" class="form-control" id="SCurrentEmployment" placeholder="Current Employment" name="SCurrentEmployment"  value="{{$s->SCurrentEmployment}}">
             </div>
         @endforeach
-        <center><button type="submit" style="width:90px;" class="btn btn-primary">Edit</button></center>
+        <br>
+        <center><button type="submit" style="width:90px; font-size:20px;" class="btn btn-primary">Edit</button></center>
     </form>
     <form  method="Post"  action="{{route('DeleteStud')}}">
         @csrf
         @method('delete')
         <br>
-        <center> <button type="submit" style="width:90px;" class="btn btn-danger">Delete</button></center>
+        <center> <button type="submit" style="width:100px; font-size:22px;" class="btn btn-danger">Delete</button></center>
     </form>
     <br>
-
-
+    <br>
 
 </div>
 

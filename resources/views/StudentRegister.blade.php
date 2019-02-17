@@ -19,7 +19,7 @@
 </head>
 <body>
 <br>
-<h1> <center> Register new Student </center></h1>
+<h2> <center> Register a new Student </center></h2>
 
 <a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
 
@@ -54,9 +54,18 @@
             <label>Department: </label>
             <select class="form-control" id="SDepartment" name="SDepartment" required>
                 <option></option>
-                <option>Computer Science</option>
-                <option>Psychology</option>
-                <option>Business</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Electronic and Electrical Engineering">Electronic and Electrical Engineering</option>
+            <option value="Economics">Economics</option>
+            <option value="English Language & Linguistics">English Language & Linguistics</option>
+            <option value="Geography">Geography</option>
+            <option value="Information School">Information School</option>
+            <option value="Law">Law</option>
+            <option value="Management School">Management School</option>
+            <option value="Politics">Politics</option>
+            <option value="Psychology">Psychology</option>
+            <option value="Sociological Studies">Sociological Studies</option>
+            <option value="School of Health and Related Research (ScHARR)">School of Health and Related Research (ScHARR)</option>
             </select>
         </div>
         <div class="form-group">

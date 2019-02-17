@@ -18,11 +18,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1><center> Edit My Profile Supervisor:@foreach ($displayProfSup as $psup) {{$psup->ACFullname}} @endforeach</center></h1>
+<br>
+<h2><center> Edit My Profile Supervisor:@foreach ($displayProfSup as $psup) {{$psup->ACFullname}} @endforeach</center></h2>
 <div class="btn">
-    <a href="Supervisor"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+    <a href="Supervisor"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size:22px;">Back</button></a>
 </div>
-
 
 <div class="container">
     <h2>Edit form</h2>
@@ -52,7 +52,7 @@
                 <label>Title: </label>
                 <input type="text" class="form-control" id="ACTitle" placeholder="Enter Title" name="ACTitle" value="{{$psup->Title}}">
             </div>
-            <button type="submit" style="width:80px;height:70px;margin-bottom: 100px  ;margin-top:10px;margin-left:30px;" class="btn btn-primary">Edit</button>
+            <center><button type="submit" style="width:80px;height:70px;margin-bottom: 100px;margin-top:15px; font-size:22px;" class="btn btn-primary">Edit</button></center>
         @endforeach
     </form>
 

@@ -38,6 +38,8 @@ Route::post('/PrintSearchStudent', 'SearchController@SearchStudent')->name('Sear
 
 Route::post('/PrintSearchAcademic', 'SearchController@SearchAcademic')->name('SearchAcad')->middleware('admin');
 
+Route::post('/PrintSearchRelation', 'SearchController@SearchRelation')->name('SearchRel')->middleware('admin');
+
 Route::post('/AccEmpSelect', 'EditController@displayEditAcad')->middleware('admin');
 
 Route::post('/MyProfileSupervisor', 'EditController@EditProfileSupervisor')->name('EditMyProfSuper');
@@ -92,10 +94,16 @@ Route::get('/download-PDF_Academic',"SearchController@pdfA")->middleware('admin'
 
 Route::get('/download-PDF_Student',"SearchController@pdfS")->middleware('admin');
 
+Route::get('/download-PDF_Relation',"SearchController@pdfR")->middleware('admin');
+
 Route::get('/pdfacademic', function() {
     return view('pdfacademic');
 });
 
 Route::get('/pdfstudent', function() {
     return view('pdfstudent');
+});
+
+Route::get('/pdfrelation', function() {
+    return view('pdfrelation');
 });
