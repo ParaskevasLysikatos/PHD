@@ -38,9 +38,8 @@
                 <br>
                 <table class="table table-bordered">
                     <tr>
+                    <th>ACFullname</th>
                     <th>ACUsername</th>
-                    <th>ACPassword</th>
-                    <th>Role</th>
                     <th>Email</th>
                     <th>Department</th>
                     </tr>
@@ -48,7 +47,6 @@
                         <tr>
                             <td> {{$acad->ACFullname}} </td>
                             <td> {{$acad->ACUsername}}</td>
-                            <td> {{$acad->Role}}</td>
                             <td> {{$acad->ACEmail}} </td>
                             <td> {{$acad->ACDepartment}} </td>
                         </tr>

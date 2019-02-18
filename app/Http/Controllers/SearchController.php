@@ -61,6 +61,52 @@ class SearchController extends BaseController
         return view('PrintSearchStudent', ['dataStud' => $dataStud]);
     }
 
+    public function SearchAlumnus(Request $request)
+    {
+        $SFullname = $request->input('SFullname');
+        session(['LF' => $SFullname]);
+        $SUsername= $request->input('SUsername');
+        session(['LU' => $SUsername]);
+        $SEmail = $request->input('SEmail');
+        session(['LE' => $SEmail]);
+        $SDepartment = $request->input('SDepartment');
+        session(['LD' => $SDepartment]);
+        $SPhone= $request->input('SPhone');
+        session(['LP' => $SPhone]);
+        $SCountry = $request->input('SCountry');
+        session(['LC' => $SCountry]);
+        $query = DB::table( 'alumnis' );
+
+        if($SUsername!=''){
+            $query->where("SUsername",'like',"%$SUsername%");
+        }
+
+        if($SFullname!=''){
+            $query->where("SFullname",'like',"%$SFullname%");
+        }
+
+        if($SEmail!=''){
+            $query->where("SEmail",'like',"%$SEmail%");
+        }
+
+        if($SDepartment!=''){
+            $query->where("SDepartment",'like',"%$SDepartment%");
+        }
+
+        if($SPhone!=''){
+            $query->where("SPhone",'like',"%$SPhone%");
+        }
+
+        if($SCountry!=''){
+            $query->where("SCountry",'like',"%$SCountry%");
+        }
+
+        $dataAlu = $query->get();
+
+        return view('PrintSearchAlumnus', ['dataAlu' => $dataAlu]);
+    }
+
+
     public function SearchAcademic(Request $request)
     {
         $ACFullname = $request->input('ACFullname');
@@ -215,6 +261,48 @@ class SearchController extends BaseController
         $pdf =  PDF::loadView('/pdfstudent',['dataS'=>$dataS]);
         return $pdf->download('StudentSearchPDF'.$mytime.'.pdf');
     }
+
+    public function pdfL()
+    {
+        $SFullname =Session::get('LF');
+        $SUsername=Session::get('LU');
+        $SEmail =Session::get('LE');
+        $SDepartment =Session::get('LD');
+        $SPhone=Session::get('LP');
+        $SCountry =Session::get('LC');
+        $query = DB::table( 'alumnis' );
+
+        if($SUsername!=''){
+            $query->where("SUsername",'like',"%$SUsername%");
+        }
+
+        if($SFullname!=''){
+            $query->where("SFullname",'like',"%$SFullname%");
+        }
+
+        if($SEmail!=''){
+            $query->where("SEmail",'like',"%$SEmail%");
+        }
+
+        if($SDepartment!=''){
+            $query->where("SDepartment",'like',"%$SDepartment%");
+        }
+
+        if($SPhone!=''){
+            $query->where("SPhone",'like',"%$SPhone%");
+        }
+
+        if($SCountry!=''){
+            $query->where("SCountry",'like',"%$SCountry%");
+        }
+
+        $dataA = $query->get();
+        $mytime = Carbon::now();
+        $mytime->toDateTimeString();
+        $pdf =  PDF::loadView('/pdfalumnus',['dataA'=>$dataA]);
+        return $pdf->download('AlumnusSearchPDF'.$mytime.'.pdf');
+    }
+
 
     public function pdfR()
     {

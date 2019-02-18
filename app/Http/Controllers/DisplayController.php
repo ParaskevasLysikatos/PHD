@@ -24,9 +24,9 @@ class DisplayController extends BaseController
         $SUname = $request->session()->get('Uname');
         $displayFullname=DB::table('academic_employees')->select('ACFullname')->where('ACUsername',$SUname)->first();
         $display = DB::table('academic_employees')->select('*')->orderBy('Role')->get();
-        $displayStud = DB::select('select * from students');
-        return view('Admin', ['display' => $display, 'displayStud' => $displayStud, 'displayFullname' => $displayFullname]);
-
+        $displayStud = DB::table('students')->select('*')->get();
+        $displayAlu=DB::table('alumnis')->select('*')->get();
+        return view('Admin', ['display' => $display, 'displayStud' => $displayStud, 'displayFullname' => $displayFullname,'displayAlu'=>$displayAlu]);
     }
 
     public function displayStud(Request $request)

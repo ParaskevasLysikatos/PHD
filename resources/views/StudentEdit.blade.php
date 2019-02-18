@@ -141,7 +141,7 @@
         @csrf
         @method('put')
         <br>
-        <center> <button type="submit" style="width:100px; font-size:22px;" class="btn-dark">Become Alumni</button></center>
+        <center> <button type="submit" style="width:100px; font-size:22px;" class="btn-dark">Become Alumnus</button></center>
     </form>
     <br>
     <form  method="Post"  action="{{route('DeleteStud')}}">

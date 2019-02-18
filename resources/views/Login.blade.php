@@ -16,9 +16,9 @@
         
     </head>
     <body>
-    <br>
+    <br><br>
     <center><h1> Login Page</h1></center>
-
+    <br>
                 <center>      
         <form method="post">
                     @csrf
@@ -26,6 +26,7 @@
                 <label for="Username">Username</label>
                 <input type="text" name="Username" class="form-control" aria-describedby="emailHelp" placeholder="Enter username">
             </div>
+            <br>
             <div class="form-group col-md-4">
                 <label for="Password">Password</label>
                 <input  type="Password" name="Password" class="form-control"  placeholder="Enter Password">

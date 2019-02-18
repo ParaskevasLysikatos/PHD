@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title> Print Search Academic Page</title>
+    <title> Print Search Alumnus Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -9,34 +9,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<!-- new nav starts here-->
 @include('navbar');
-<br>
+
 <div class="content">
     <div class="title m-b-md">
-        <h2 style="text-align: center;">Print Search Academic</h2>
+        <h2 style="text-align: center;">Print Search Alumni</h2>
     </div>
-    <br>
     <div>
+        <br>
         <table class="table table-bordered">
             <tr>
-            <th>Fullname</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Deparment</th>
+                <th>Fullname</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Deparment</th>
             </tr>
-            @foreach ($dataAcad as $acad)
+            @foreach ($dataAlu as $stud)
                 <tr>
-                    <td> {{$acad->ACFullname}} </td>
-                    <td> {{$acad->ACUsername}}</td>
-                    <td> {{$acad->ACEmail}} </td>
-                    <td> {{$acad->ACDepartment}} </td>
+                    <td> {{$stud->SFullname}} </td>
+                    <td> {{$stud->SUsername}}</td>
+                    <td> {{$stud->SEmail}} </td>
+                    <td> {{$stud->SDepartment}} </td>
                 </tr>
             @endforeach
         </table>
     </div>
-    <br>
-    <center><a href ="{{url('download-PDF_Academic')}}" style="font-size: 26px;">Download pdf Academic</a></center>
 </div>
+<br>
+<center><a href ="{{url('download-PDF_Alumnus')}}" style="font-size: 26px;">Download pdf Alumni</a></center>
 </body>
 </html>
