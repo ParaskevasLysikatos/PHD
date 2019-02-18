@@ -188,29 +188,29 @@
 
 <div class="content">
     <div class="title m-b-md">
-        <h2 style="text-align: center;">Print Search Student</h2>
+        <h3 style="text-align: center;">Alumni selected:  @foreach ($displayAlu as $a){{$a->SFullname}} @endforeach</h3>
     </div>
     <div>
         <br>
-    <table class="table table-bordered">
-        <tr>
-        <th>Fullname</th>
-        <th>ACUsername</th>
-        <th>Email</th>
-        <th>Deparment</th>
-        </tr>
-        @foreach ($dataStud as $stud)
+        <table class="table table-bordered">
             <tr>
-                <td> {{$stud->SFullname}} </td>
-                <td> {{$stud->SUsername}}</td>
-                <td> {{$stud->SEmail}} </td>
-                <td> {{$stud->SDepartment}} </td>
+                <th>Fullname</th>
+                <th>ACUsername</th>
+                <th>Email</th>
+                <th>Deparment</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($displayAlu as $a)
+                <tr>
+                    <td> {{$a->SFullname}} </td>
+                    <td> {{$a->SUsername}}</td>
+                    <td> {{$a->SEmail}} </td>
+                    <td> {{$a->SDepartment}} </td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 </div>
 <br>
-<center><a href ="{{url('download-PDF_Student')}}" style="font-size: 26px;">Download pdf Student</a></center>
+<center><a href="AlumniSelect"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size: 22px;">Back</button></a></center>
 </body>
 </html>

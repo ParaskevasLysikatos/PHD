@@ -1,7 +1,8 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html>
 <head>
-    <title> Print Search Student Page</title>
+    <title> Select a Alumni</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -9,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
 <!-- new nav starts here-->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <!-- Brand -->
@@ -110,6 +113,7 @@
                     <option></option>
                     <option value="Admin">Admin</option>
                     <option value="Supervisor">Supervisor</option>
+
                 </select>
             </div>
 
@@ -185,32 +189,23 @@
         </form>
     </div>
 </div>
-
-<div class="content">
-    <div class="title m-b-md">
-        <h2 style="text-align: center;">Print Search Student</h2>
-    </div>
-    <div>
-        <br>
-    <table class="table table-bordered">
-        <tr>
-        <th>Fullname</th>
-        <th>ACUsername</th>
-        <th>Email</th>
-        <th>Deparment</th>
-        </tr>
-        @foreach ($dataStud as $stud)
-            <tr>
-                <td> {{$stud->SFullname}} </td>
-                <td> {{$stud->SUsername}}</td>
-                <td> {{$stud->SEmail}} </td>
-                <td> {{$stud->SDepartment}} </td>
-            </tr>
-        @endforeach
-    </table>
-    </div>
-</div>
 <br>
-<center><a href ="{{url('download-PDF_Student')}}" style="font-size: 26px;">Download pdf Student</a></center>
+
+<center><h1> Select a Alumni </h1></center>
+
+<center><form method="post" action="{{route('DisplayAlu')}}">
+        @csrf
+        <br>
+        <label>Select one:</label>
+        <select class="form-control" type="text" name="SFullname" size="6" style="width: 400px; height:300px;font-size:18px;">
+            @foreach ($displayAlu as $a)
+                <option value="{{$a->SFullname}}" >{{$a->SFullname}}</option>
+            @endforeach
+        </select>
+        <br><br>
+        <button type="submit" class="btn btn-primary" style="font-size:18px;">Find Alumni</button>
+    </form></center>
+<br><br>
+
 </body>
 </html>

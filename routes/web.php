@@ -24,6 +24,8 @@ Route::post('/StudentEdit','EditController@EditStudent')->name('EditStud')->midd
 
 Route::post('/AccEmpEdit','EditController@EditAcademic')->name('EditAcad')->middleware('admin');
 
+Route::put('/StudentEdit','DeleteController@AlumniBecome')->name('AlumniStud')->middleware('admin');
+
 Route::delete('/StudentEdit','DeleteController@DeleteStudent')->name('DeleteStud')->middleware('admin');
 
 Route::delete('/AccEmpEdit','DeleteController@DeleteAcademic')->name('DeleteAcad')->middleware('admin');
@@ -33,6 +35,8 @@ Route::delete('/Assign','DeleteController@DeleteConnection')->name('DeleteCon')-
 Route::delete('/StudentRecords','DisplayController@DelStudRecord')->name('DeleteRec')->middleware('admin');
 
 Route::post('/StudentSelect', 'EditController@displayEditStud')->middleware('admin');
+
+Route::post('/AlumniSelect', 'EditController@displayAlu')->name('DisplayAlu')->middleware('admin');
 
 Route::post('/PrintSearchStudent', 'SearchController@SearchStudent')->name('SearchStud')->middleware('admin');
 
@@ -58,6 +62,8 @@ Route::get('/Supervisor', 'DisplayController@displaySuperv')->middleware('superv
 Route::get('/Assign', 'DisplayController@displayConnections')->middleware('admin');
 
 Route::get('/StudentSelect', 'DisplayController@displaySelectStud')->middleware('admin');
+
+Route::get('/AlumniSelect', 'DisplayController@displaySelectAlu')->middleware('admin');
 
 Route::get('/AccEmpSelect', 'DisplayController@displaySelectAcad')->middleware('admin');
 

@@ -22,6 +22,13 @@ class EditController extends BaseController
         return view('StudentEdit', ['displayStud' => $displayStud]);
     }
 
+    public function displayAlu(Request $request)
+    {
+        $SFname = $request->input('SFullname');
+        session(['SFedit' =>  $SFname]);
+        $displayAlu = DB::table('alumnis')->where('SFullname',$SFname)->get();
+        return view('Alumni', ['displayAlu' => $displayAlu]);
+    }
 
     public function displayEditAcad(Request $request)
     {

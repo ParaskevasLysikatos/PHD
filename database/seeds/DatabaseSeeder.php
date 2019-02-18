@@ -129,6 +129,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        DB::table('alumnis')->insert([
+            'SUsername' => "stud_katarina",
+            'SEmail' => 'studkatarina@gmail.com',
+            'SPassword' => bcrypt("123"),
+            'SFullname'=>"student katarina",
+            'RN'=>"4",
+            'SDepartment'=>"Business"
+        ]);
+
+        DB::table('alumnis')->insert([
+            'SUsername' => "stud_chris",
+            'SEmail' => 'studchris@gmail.com',
+            'SPassword' => bcrypt("123"),
+            'SFullname'=>"student chris",
+            'RN'=>"5",
+            'SDepartment'=>"Business"
+        ]);
+
+
+
+
+
 
 
     }

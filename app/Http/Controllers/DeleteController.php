@@ -20,6 +20,56 @@ class DeleteController extends BaseController
         $displayStudCon = DB::table('connections')->where('SFullname',$SFedit)->delete();
             return redirect('Admin');
     }
+    public function AlumniBecome(Request $req)
+    {
+        $SFedit = $req->session()->get('SFedit');
+        $var = DB::table('students')->where('SFullname',$SFedit)->first();
+
+        $SFullname = $var->SFullname;
+        $SUsername = $var->SUsername;
+        $RN = $var->RN;
+        $SEmail = $var->SEmail;
+        $SDepartment = $var->SDepartment;
+        $SPhone = $var->SPhone;
+        $SDepartmentalSec = $var->SDepartmentalSec;
+        $SCountry = $var->SCountry;
+        $STopic = $var->STopic;
+        $SGender = $var->SGender;
+        $SDateOfBirth = $var->SDateOfBirth;
+        $SModeOfAttend = $var->SModeOfAttend;
+        $SFirstEntry = $var->SFirstEntry;
+        $SPayment = $var->SPayment;
+        $SYearOfGraduation=$var->SYearOfGraduation;
+        $SUpgradeStatus= $var->SUpgradeStatus;
+        $SCurrentEmployment = $var->SCurrentEmployment;
+        $SubmissionDate= $var->SubmissionDate;
+
+        DB::table('alumnis')->insert([
+            'SFullname' => $SFullname,
+            'RN' => $RN,
+            'SUsername'=> $SUsername,
+            'SEmail'=> $SEmail,
+            'SDepartment'=> $SDepartment,
+            'SPhone'=> $SPhone,
+            'STopic'=> $STopic,
+            'SDepartmentalSec'=> $SDepartmentalSec,
+            'SCountry'=> $SCountry,
+            'SGender'=> $SGender,
+            'SDateOfBirth'=> $SDateOfBirth,
+            'SModeOfAttend'=> $SModeOfAttend,
+            'SFirstEntry'=> $SFirstEntry,
+            'SYearOfGraduation'=> $SYearOfGraduation,
+            'SUpgradeStatus'=> $SUpgradeStatus,
+            'SPayment'=> $SPayment,
+            'SCurrentEmployment'=>$SCurrentEmployment,
+            'SubmissionDate'=>$SubmissionDate,
+        ]);
+
+         DB::table('students')->where('SFullname',$SFedit)->delete();
+         DB::table('connections')->where('SFullname',$SFedit)->delete();
+        return redirect('Admin');
+    }
+
 
     public function DeleteAcademic(Request $req)
     {

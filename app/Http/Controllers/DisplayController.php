@@ -70,6 +70,12 @@ class DisplayController extends BaseController
         return view('StudentSelect', ['displayStudent' => $displayStudent]);
     }
 
+    public function displaySelectAlu()
+    {
+        $displayAlu = DB::table('alumnis')->select('SFullname')->get();
+        return view('AlumniSelect', ['displayAlu' => $displayAlu]);
+    }
+
     public function displaySelectAcad()
     {
         $displayAcad = DB::table('academic_employees')->select('ACFullname')->get();

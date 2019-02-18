@@ -136,6 +136,14 @@
         <br>
         <center><button type="submit" style="width:90px; font-size:20px;" class="btn btn-primary">Edit</button></center>
     </form>
+    <br>
+    <form  method="Post"  action="{{route('AlumniStud')}}">
+        @csrf
+        @method('put')
+        <br>
+        <center> <button type="submit" style="width:100px; font-size:22px;" class="btn-dark">Become Alumni</button></center>
+    </form>
+    <br>
     <form  method="Post"  action="{{route('DeleteStud')}}">
         @csrf
         @method('delete')

@@ -54,7 +54,6 @@ class RegisterController extends BaseController
             'SUsername'=>'required|unique:students,SUsername',
             'RN'=>'required',
             'SPassword'=>'required',
-            'SEmail'=>'required',
             'SDepartment'=>'required',
 
         ]);
