@@ -27,6 +27,8 @@
 <div class="container">
 <br>
   <h2>Registration form</h2>
+  <div class="row">
+<div class="col">
   <form  method="POST">
   @csrf
     <div class="form-group">
@@ -45,6 +47,8 @@
     <label>Password: </label>
       <input type="password" class="form-control" id="ACPassword" placeholder="Enter Password" name="ACPassword">
     </div>
+    </div>
+    <div class="col">
     <div class="form-group">
     <label>Phone: </label>
       <input type="text" class="form-control" id="ACPhone" placeholder="Enter Phone" name="ACPhone">
@@ -86,6 +90,8 @@
     <center><button type="submit" class="btn btn-primary" style="font-size:20px;">Submit</button></center>
     <br><br>
 </form>
+</div>
+</div>
 </div>
 @include('errors')
     </body>

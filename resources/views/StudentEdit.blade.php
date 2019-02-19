@@ -27,7 +27,8 @@
 <div class="container">
 <br>
     <h2>Edit Form</h2>
-
+<div class="row">
+<div class="col">
     <form  method="POST"  action="{{route('EditStud')}}">
         @csrf
         @foreach ($displayStud as $s)
@@ -84,6 +85,9 @@
             <label>Deparmental Secretary: </label>
             <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$s->SDepartmentalSec}}">
         </div>
+        
+        </div>
+        <div class="col">
         <div class="form-group">
             <label>Country: </label>
             <input type="text" class="form-control" id="SCountry" placeholder="Enter Country" name="SCountry" value="{{$s->SCountry}}">
@@ -134,6 +138,7 @@
             </div>
         @endforeach
         <br>
+        
         <center><button type="submit" style="width:90px; font-size:20px;" class="btn btn-primary">Edit</button></center>
     </form>
     <br>
@@ -152,7 +157,8 @@
     </form>
     <br>
     <br>
-
+    </div>
+</div>
 </div>
 
 </body>

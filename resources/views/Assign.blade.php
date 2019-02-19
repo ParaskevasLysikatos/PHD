@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 
 <style>
     select {
@@ -21,6 +21,9 @@
 
 <center><h1> Assign Supervisor with a Student </h1></center>
 <br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
 <form method="post" action="{{route('CreateCon')}}">
     @csrf
     <center><h3 for="ACEmployee">Supervisor:</h3></center>
@@ -31,14 +34,18 @@
             @endforeach
         </select></center>
 <br>
+</div>
+<div class="col-sm">
 <center><h3 for="ACEmployee">Student:</h3></center>
     <center> <label> Select one: </label></center>
-<center> <select class="container" type="text" name="SFullname" id="SF" size="6" style="font-size:18px; width: 400px; height: 200px;">
+<center> <select class="container" type="text" name="SFullname" id="SF" size="6" style="font-size:18px; width: 400px     height: 200px;">
         @foreach ($displayStudent as $Stud)
         <option value="{{$Stud->SFullname}} " > {{$Stud->SFullname}}</option>
         @endforeach
     </select></center>
-<br>
+</div>
+<div class="col-md">
+<br><br><br>
 <center><button type="submit" class="btn btn-primary" style="margin: 10px; font-size:18px;">Connect</button></center>
 </form>
 
@@ -46,6 +53,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <center><button type="submit" id="delete" style="margin:10px; font-size:20px;" class="btn btn-danger">Delete</button></center>
 </form>
+</div>
 <script>
     jQuery(document).ready(function(){
         jQuery('#delete').click(function(e){

@@ -28,6 +28,8 @@
 <div class="container">
 <br>
     <h2>Edit form</h2>
+    <div class="row">
+<div class="col">
     <form  method="POST" action="{{route('EditAcad')}}">
         @csrf
         @foreach ($displayEditAc as $a)
@@ -47,10 +49,13 @@
             <label>Password: </label>
             <input type="password" class="form-control" id="ACPassword" placeholder="Attention! will override current password" name="ACPassword" >
         </div>
+        </div>
+    <div class="col">
         <div class="form-group">
             <label>Phone: </label>
             <input type="text" class="form-control" id="ACPhone" placeholder="Enter Phone" name="ACPhone" value="{{$a->ACPhone}}">
         </div>
+        
         <div class="form-group">
             <label>Department: </label>
             <select class="form-control" id="ACDepartment" name="ACDepartment" value="{{$a->ACDepartment}}" required >
@@ -69,10 +74,12 @@
                 <option value="School of Health and Related Research (ScHARR)">School of Health and Related Research (ScHARR)</option>
             </select>
         </div>
+        
         <div class="form-group">
             <label>Country: </label>
             <input type="text" class="form-control" id="ACCountry" placeholder="Enter Country" name="ACCountry" value="{{$a->ACCountry}}">
         </div>
+   
         <div class="form-group">
             <label>Role: </label>
             <select class="form-control" name="Role" value="{{$a->Role}}">
@@ -81,6 +88,7 @@
                 <option value="Supervisor">Supervisor</option>
             </select>
         </div>
+        
         <div class="form-group">
             <label>Title: </label>
             <input type="text" class="form-control" id="ACTitle" placeholder="Enter Title" name="ACTitle" value="{{$a->Title}}">
@@ -99,6 +107,7 @@
         <center> <button type="submit" class="btn btn-danger" style="width:90px; font-size:22px;">Delete</button></center>
         <br>
     </form>
+    </div>
     </div>
 </div>
 

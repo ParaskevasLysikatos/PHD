@@ -57,7 +57,12 @@
 
 <br>
 <div class="collapse" id="collapseExample2">
+
+  
     <div class="card card-body">
+    <div class="container">
+    <div class="row">
+    <div class="col">
         <form method="post" action="{{route('SearchAcad')}}" class="form-horizontal" role="form">
             @csrf
             <div class="form-group">
@@ -76,6 +81,8 @@
                 <label for="contain">Email</label>
                 <input class="form-control" name="ACEmail" type="text" />
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label for="filter">Department</label>
                 <select class="form-control" name="ACDepartment">
@@ -108,12 +115,22 @@
                 <label for="contain">Country</label>
                 <input class="form-control" name="ACCountry" type="text" />
             </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
             <center><button type="submit" class="btn btn-primary">Search Academic</button></center>
+            </div>
+            </div>
         </form>
     </div>
 </div>
+</div>
 <div class="collapse" id="collapseExample3">
     <div class="card card-body">
+    <div class="container">
+    <div class="row">
+    <div class="col">
         <form method="post" action="{{route('SearchStud')}}" class="form-horizontal" role="form">
             @csrf
             <div class="form-group">
@@ -128,10 +145,13 @@
                 <label for="contain">Phone</label>
                 <input class="form-control" name="SPhone" type="text" />
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label for="contain">Email</label>
                 <input class="form-control" name="SEmail" type="text" />
             </div>
+            
             <div class="form-group">
                 <label for="filter">Department</label>
                 <select class="form-control" name="SDepartment">
@@ -155,8 +175,15 @@
                 <label for="contain">Country</label>
                 <input class="form-control" name="SCountry" type="text" />
             </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
             <center><button type="submit" class="btn btn-primary">Search Student</button></center>
+            </div>
+            </div>
         </form>
+        </div>
     </div>
 </div>
 <!--search for the relation form. *don't forget to specify the action*-->
@@ -179,6 +206,9 @@
 <!--Alumni-->
 <div class="collapse" id="collapseExample5">
     <div class="card card-body">
+    <div class="container">
+    <div class="row">
+    <div class="col">
         <form method="post" action="{{route('SearchAlu')}}" class="form-horizontal" role="form">
             @csrf
             <div class="form-group">
@@ -193,6 +223,8 @@
                 <label for="contain">Phone</label>
                 <input class="form-control" name="SPhone" type="text" />
             </div>
+            </div>
+            <div class="col">
             <div class="form-group">
                 <label for="contain">Email</label>
                 <input class="form-control" name="SEmail" type="text" />
@@ -219,7 +251,14 @@
                 <label for="contain">Country</label>
                 <input class="form-control" name="SCountry" type="text" />
             </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col">
             <center><button type="submit" class="btn btn-primary">Search Alumni</button></center>
+            </div>
+            </div>
         </form>
+        </div>
     </div>
 </div>

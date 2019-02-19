@@ -13,7 +13,7 @@
 
 
 <!-- new nav starts here-->
-@include('navbar');
+@include('navbar')
 <br>
 
 <center><h1> Select a Student </h1></center>
