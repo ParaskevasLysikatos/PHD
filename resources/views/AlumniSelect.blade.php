@@ -19,15 +19,16 @@
         @csrf
         <br>
         <label>Select one:</label>
-        <select class="form-control" type="text" name="SFullname" size="6" style="width: 400px; height:300px;font-size:18px;">
+        <select class="form-control" id="SF" type="text" name="SFullname" size="6" style="width: 400px; height:300px;font-size:18px;">
             @foreach ($displayAlu as $a)
                 <option value="{{$a->SFullname}}" >{{$a->SFullname}}</option>
             @endforeach
         </select>
         <br><br>
-        <button type="submit" class="btn btn-primary" style="font-size:18px;">Select Alumnus</button>
+        <button type="submit" class="btn btn-primary" style="font-size:18px;">Profile Alumnus</button>
     </form></center>
 <br><br>
+
 
 </body>
 </html>

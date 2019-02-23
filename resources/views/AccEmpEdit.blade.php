@@ -60,18 +60,8 @@
             <label>Department: </label>
             <select class="form-control" id="ACDepartment" name="ACDepartment" value="{{$a->ACDepartment}}" required >
                 <option></option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Electronic and Electrical Engineering">Electronic and Electrical Engineering</option>
-                <option value="Economics">Economics</option>
-                <option value="English Language & Linguistics">English Language & Linguistics</option>
-                <option value="Geography">Geography</option>
-                <option value="Information School">Information School</option>
-                <option value="Law">Law</option>
-                <option value="Management School">Management School</option>
-                <option value="Politics">Politics</option>
-                <option value="Psychology">Psychology</option>
-                <option value="Sociological Studies">Sociological Studies</option>
-                <option value="School of Health and Related Research (ScHARR)">School of Health and Related Research (ScHARR)</option>
+                @foreach($deps as $d)
+                <option value="{{$d->depName}}">{{$d->depName}}</option>@endforeach
             </select>
         </div>
         

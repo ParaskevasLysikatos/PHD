@@ -22,21 +22,31 @@ Route::post('/Assign','ConnectionsController@Connected')->name('CreateCon')->mid
 
 Route::post('/StudentEdit','EditController@EditStudent')->name('EditStud')->middleware('admin');
 
+Route::post('/AlumnusEdit','EditController@EditAlumnus')->name('EditAlu')->middleware('admin');
+
 Route::post('/AccEmpEdit','EditController@EditAcademic')->name('EditAcad')->middleware('admin');
 
 Route::put('/StudentEdit','DeleteController@AlumniBecome')->name('AlumniStud')->middleware('admin');
 
 Route::delete('/StudentEdit','DeleteController@DeleteStudent')->name('DeleteStud')->middleware('admin');
 
+Route::delete('/AlumnusEdit','DeleteController@DeleteAlumnus')->name('DeleteAlu')->middleware('admin');
+
 Route::delete('/AccEmpEdit','DeleteController@DeleteAcademic')->name('DeleteAcad')->middleware('admin');
 
 Route::delete('/Assign','DeleteController@DeleteConnection')->name('DeleteCon')->middleware('admin');
+
+Route::delete('/ManageDep','DeleteController@DeleteDep')->name('DepDel')->middleware('admin');
 
 Route::delete('/StudentRecords','DisplayController@DelStudRecord')->name('DeleteRec')->middleware('admin');
 
 Route::post('/StudentSelect', 'EditController@displayEditStud')->middleware('admin');
 
 Route::post('/AlumniSelect', 'EditController@displayAlu')->name('DisplayAlu')->middleware('admin');
+
+Route::post('/Alumni', 'EditController@DisplayEditAlu')->name('DisplayEditAlu')->middleware('admin');
+
+Route::post('/ManageDep', 'EditController@AddDep')->name('AddDep')->middleware('admin');
 
 Route::post('/PrintSearchStudent', 'SearchController@SearchStudent')->name('SearchStud')->middleware('admin');
 
@@ -63,6 +73,8 @@ Route::get('/Supervisor', 'DisplayController@displaySuperv')->middleware('superv
 
 Route::get('/Assign', 'DisplayController@displayConnections')->middleware('admin');
 
+Route::get('/ManageDep', 'DisplayController@displayDep')->middleware('admin');
+
 Route::get('/StudentSelect', 'DisplayController@displaySelectStud')->middleware('admin');
 
 Route::get('/AlumniSelect', 'DisplayController@displaySelectAlu')->middleware('admin');
@@ -74,10 +86,9 @@ Route::get('/MyProfileSupervisor', 'DisplayController@displayProfileSupervisor')
 Route::get('/MyProfileStudent', 'DisplayController@displayProfileStudent')->middleware('student');
 
 ///single routes
-Route::get('/AccEmpRegister',['middleware' => 'admin', function()
-{
-    return view('AccEmpRegister');
-}]);
+
+Route::get('/AccEmpRegister', 'DisplayController@displayAcadReg')->middleware('admin');
+
 
 Route::get('/', function () {
     return view('welcome');

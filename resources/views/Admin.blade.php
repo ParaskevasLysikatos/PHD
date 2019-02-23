@@ -17,7 +17,7 @@
         <h3 style="text-align: center">Welcome {{$displayFullname->ACFullname}}</h3>
         <br>
    <!--new table for the admin panel starts here -->
-    <section id="tabs" class="project-tab" style="position: relative;left: -7%;">
+    <section id="tabs" class="project-tab" style="position: relative;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -33,7 +33,7 @@
                                 <table class="table" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th>ACUsername</th>
+                                        <th>Username</th>
                                         <th>Title</th>
                                         <th>Fullname</th>
                                         <th>Role</th>
@@ -69,13 +69,13 @@
                                     <thead>
                                         <tr>     
                                         <th>RegistrationNumber</th>
-                                        <th>SUsername</th>
-                                        <th>SFullname</th>           
+                                        <th>Username</th>
+                                        <th>Fullname</th>           
                                         <th class="collapse" id="collapseContent1" aria-expanded="true">Gender</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SEmail</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SDepartment</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SPhone</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SCountry</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Email</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Department</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Phone</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Country</th>
                                         <th class="collapse" id="collapseContent1" aria-expanded="true">Payment</th>
                                         <th class="collapse" id="collapseContent1" aria-expanded="true">Date of Birth</th>
                                         <th class="collapse" id="collapseContent1" aria-expanded="true">First Entry</th>
@@ -120,13 +120,13 @@
                                     <thead>
                                     <tr>
                                         <th>RegistrationNumber</th>
-                                        <th>SUsername</th>
+                                        <th>Username</th>
                                         <th>Gender</th>
-                                        <th>SFullname</th>
-                                        <th>SEmail</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SDepartment</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SPhone</th>
-                                        <th class="collapse" id="collapseContent1" aria-expanded="true">SCountry</th>
+                                        <th>Fullname</th>
+                                        <th>Email</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Department</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Phone</th>
+                                        <th class="collapse" id="collapseContent1" aria-expanded="true">Country</th>
 
 
                                     </tr>

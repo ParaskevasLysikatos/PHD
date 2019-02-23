@@ -17,7 +17,7 @@
     </head>
     <body>
     <br><br>
-    <center><h1> Login Page</h1></center>
+    <center><h1 style="color: #004d99;"> Login Page</h1></center>
     <br>
                 <center>      
         <form method="post">
@@ -32,7 +32,7 @@
                 <input  type="Password" name="Password" class="form-control"  placeholder="Enter Password">
             </div><br>
             
-            <button type="submit" class="btn btn-primary" style="font-size:22px;">Submit</button>
+            <button type="submit" class="btn btn-primary" style=" background-color: #004d99;font-size:22px;">Submit</button>
             </form> 
             </center>
     @include('errors')

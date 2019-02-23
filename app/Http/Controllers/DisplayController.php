@@ -26,7 +26,8 @@ class DisplayController extends BaseController
         $display = DB::table('academic_employees')->select('*')->orderBy('Role')->get();
         $displayStud = DB::table('students')->select('*')->get();
         $displayAlu=DB::table('alumnis')->select('*')->get();
-        return view('Admin', ['display' => $display, 'displayStud' => $displayStud, 'displayFullname' => $displayFullname,'displayAlu'=>$displayAlu]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('Admin', ['display' => $display, 'displayStud' => $displayStud, 'displayFullname' => $displayFullname,'displayAlu'=>$displayAlu,'deps'=>$deps]);
     }
 
     public function displayStud(Request $request)
@@ -60,26 +61,42 @@ class DisplayController extends BaseController
         $displayAcad = DB::table('academic_employees')->select('ACFullname')->where('Role','=','Supervisor')->get();
         $displayStudent = DB::table('students')->select('SFullname')->get();
         $displayCon = DB::table('connections')->select('ACFullname','SFullname')->get();
-        return view('Assign', ['displayAcad' => $displayAcad,'displayStudent' => $displayStudent,'displayCon'=>$displayCon]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('Assign', ['displayAcad' => $displayAcad,'displayStudent' => $displayStudent,'displayCon'=>$displayCon,'deps'=>$deps]);
 
     }
 
     public function displaySelectStud()
     {
         $displayStudent = DB::table('students')->select('SFullname')->get();
-        return view('StudentSelect', ['displayStudent' => $displayStudent]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('StudentSelect', ['displayStudent' => $displayStudent,'deps'=>$deps]);
+    }
+
+    public function displayDep()
+    {
+        $displayDep = DB::table('departments')->select('depName')->get();
+        return view('ManageDep', ['displayDep' => $displayDep]);
+    }
+
+    public function  displayAcadReg()
+    {
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('AccEmpRegister', ['deps' => $deps]);
     }
 
     public function displaySelectAlu()
     {
         $displayAlu = DB::table('alumnis')->select('SFullname')->get();
-        return view('AlumniSelect', ['displayAlu' => $displayAlu]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('AlumniSelect', ['displayAlu' => $displayAlu,'deps'=>$deps]);
     }
 
     public function displaySelectAcad()
     {
         $displayAcad = DB::table('academic_employees')->select('ACFullname')->get();
-        return view('AccEmpSelect', ['displayAcad' => $displayAcad]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('AccEmpSelect', ['displayAcad' => $displayAcad,'deps'=>$deps]);
     }
 
     public function displayProfileSupervisor(Request  $request){

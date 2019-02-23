@@ -17,10 +17,10 @@
     <div>
         <table class="table table-bordered">
             <tr>
-            <th>SFullname</th>
-            <th>SUsername</th>
-            <th>SEmail</th>
-            <th>SDeparment</th>
+            <th>Fullname</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Deparment</th>
             </tr>
             @foreach ($dataS as $stud)
                 <tr>

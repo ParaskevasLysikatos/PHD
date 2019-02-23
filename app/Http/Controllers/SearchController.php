@@ -57,8 +57,9 @@ class SearchController extends BaseController
         }
 
         $dataStud = $query->get();
+        $deps = DB::table('departments')->select('depName')->get();
 
-        return view('PrintSearchStudent', ['dataStud' => $dataStud]);
+        return view('PrintSearchStudent', ['dataStud' => $dataStud,'deps'=>$deps]);
     }
 
     public function SearchAlumnus(Request $request)
@@ -102,8 +103,9 @@ class SearchController extends BaseController
         }
 
         $dataAlu = $query->get();
+        $deps = DB::table('departments')->select('depName')->get();
 
-        return view('PrintSearchAlumnus', ['dataAlu' => $dataAlu]);
+        return view('PrintSearchAlumnus', ['dataAlu' => $dataAlu,'deps'=>$deps]);
     }
 
 
@@ -154,7 +156,8 @@ class SearchController extends BaseController
         }
 
           $dataAcad= $query2->get();
-        return view('PrintSearchAcademic', ['dataAcad' => $dataAcad]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('PrintSearchAcademic', ['dataAcad' => $dataAcad,'deps'=>$deps]);
     }
 
     public function SearchRelation(Request $request)
@@ -173,7 +176,8 @@ class SearchController extends BaseController
             $query2->where("SFullname",'like',"%$SFullname%");
         }
         $dataRel= $query2->get();
-        return view('PrintSearchRelation', ['dataRel' => $dataRel]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('PrintSearchRelation', ['dataRel' => $dataRel,'deps'=>$deps]);
     }
 
     public function pdfA()

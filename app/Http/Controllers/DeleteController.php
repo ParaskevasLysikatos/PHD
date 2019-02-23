@@ -16,10 +16,18 @@ class DeleteController extends BaseController
     public function DeleteStudent(Request $req)
     {
         $SFedit = $req->session()->get('SFedit');
-        $displayStud = DB::table('students')->where('SFullname',$SFedit)->delete();
-        $displayStudCon = DB::table('connections')->where('SFullname',$SFedit)->delete();
-            return redirect('Admin');
+         DB::table('students')->where('SFullname',$SFedit)->delete();
+         DB::table('connections')->where('SFullname',$SFedit)->delete();
+            return redirect('StudentSelect');
     }
+
+    public function DeleteAlumnus(Request $req)
+    {
+        $SFedit = $req->session()->get('SFedit');
+         DB::table('alumnis')->where('SFullname',$SFedit)->delete();
+         return redirect('AlumniSelect');
+    }
+
     public function AlumniBecome(Request $req)
     {
         $SFedit = $req->session()->get('SFedit');
@@ -67,7 +75,7 @@ class DeleteController extends BaseController
 
          DB::table('students')->where('SFullname',$SFedit)->delete();
          DB::table('connections')->where('SFullname',$SFedit)->delete();
-        return redirect('Admin');
+        return redirect('StudentSelect');
     }
 
 
@@ -76,8 +84,16 @@ class DeleteController extends BaseController
         $ACFedit = $req->session()->get('ACFedit');
         $displayAcad = DB::table('academic_employees')->where('ACFullname',$ACFedit)->delete();
         $displayAcadCon = DB::table('connections')->where('ACFullname',$ACFedit)->delete();
-        return redirect('Admin');
+        return redirect('AccEmpSelect');
     }
+
+    public function DeleteDep(Request $req)
+    {
+        $dep = $req->input('deptodel');
+         DB::table('departments')->where('depName',$dep)->delete();
+        return redirect('ManageDep');
+    }
+
 
     public function DeleteConnection(Request $req){
         $ACFullname = $req->ACF;

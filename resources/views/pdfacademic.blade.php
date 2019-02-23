@@ -16,10 +16,10 @@
 <div>
     <table class="table table-bordered">
         <tr>
-        <th>ACFullname</th>
-        <th>ACUsername</th>
-        <th>ACEmail</th>
-        <th>ACDeparment</th>
+        <th>Fullname</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Deparment</th>
         </tr>
         @foreach ($dataA as $acad)
             <tr>

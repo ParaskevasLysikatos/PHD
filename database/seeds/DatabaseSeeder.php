@@ -130,7 +130,7 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('alumnis')->insert([
-            'SUsername' => "stud_katarina",
+            'SUsername' => "alu_katarina",
             'SEmail' => 'studkatarina@gmail.com',
             'SPassword' => bcrypt("123"),
             'SFullname'=>"student katarina",
@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('alumnis')->insert([
-            'SUsername' => "stud_chris",
+            'SUsername' => "alu_chris",
             'SEmail' => 'studchris@gmail.com',
             'SPassword' => bcrypt("123"),
             'SFullname'=>"student chris",
@@ -147,9 +147,54 @@ class DatabaseSeeder extends Seeder
             'SDepartment'=>"Business"
         ]);
 
+        DB::table('departments')->insert([
+            'depName' => "Computer Science",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Electronic and Electrical Engineering",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Economics",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "English Language & Linguistics",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Geography",
+        ]);
 
 
+        DB::table('departments')->insert([
+            'depName' => "Information School",
+        ]);
 
+        DB::table('departments')->insert([
+            'depName' => "Law",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Management School",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Politics",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Psychology",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "Sociological Studies",
+        ]);
+
+        DB::table('departments')->insert([
+            'depName' => "School of Health and Related Research (ScHARR)",
+        ]);
 
 
 

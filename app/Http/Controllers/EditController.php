@@ -27,7 +27,19 @@ class EditController extends BaseController
         $SFname = $request->input('SFullname');
         session(['SFedit' =>  $SFname]);
         $displayAlu = DB::table('alumnis')->where('SFullname',$SFname)->get();
-        return view('Alumni', ['displayAlu' => $displayAlu]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('Alumni', ['displayAlu' => $displayAlu,'deps'=>$deps]);
+    }
+
+    public function AddDep(Request $request)
+    {
+        request()->validate([
+            'dep'=>'required|unique:departments,depName',
+
+        ]);
+        $addD = $request->input('dep');
+        DB::table('departments')->insert(['depName'=>$addD]);
+        return redirect('ManageDep')->with('success', 'add done successfully');
     }
 
     public function displayEditAcad(Request $request)
@@ -35,7 +47,8 @@ class EditController extends BaseController
         $ACFname = $request->input('ACFullname');
         session(['ACFedit' =>  $ACFname]);
         $displayEditAc = DB::table('academic_employees')->where('ACFullname',$ACFname)->get();
-        return view('AccEmpEdit', ['displayEditAc' => $displayEditAc]);
+        $deps=DB::table('departments')->select('*')->get();
+        return view('AccEmpEdit', ['displayEditAc' => $displayEditAc,'deps'=>$deps]);
 
     }
 
@@ -49,7 +62,21 @@ class EditController extends BaseController
                 'SCountry' =>$req->input('SCountry'),'SGender' =>$req->input('SGender'),'SDateOfBirth' =>$req->input('SDateOfBirth'),
                 'SModeOfAttend' =>$req->input('SModeOfAttend'),'SFirstEntry' =>$req->input('SFirstEntry'),'SYearOfGraduation' =>$req->input('SYearOfGraduation'),
                 'SUpgradeStatus' =>$req->input('SUpgradeStatus'),'SPayment' =>$req->input('SPayment'),'SCurrentEmployment'=>$req->input('SCurrentEmployment'),'SubmissionDate'=>$req->input('SubmissionDate')] );
-            return redirect('Admin');
+            return redirect('StudentSelect');
+    }
+
+
+    public function EditAlumnus(Request $req)
+    {
+        $SFedit = $req->session()->get('SFedit');
+        $displayStud = DB::table('alumnis')->where('SFullname',$SFedit)
+            ->update(['SUsername' => $req->input('SUsername'),'SFullname' => $req->input('SFullname'),'SPassword' =>bcrypt($req->input('SPassword')),
+                'RN' =>$req->input('RN'),'SEmail' =>$req->input('SEmail'),'SDepartment' =>$req->input('SDepartment'),
+                'SPhone' =>$req->input('SPhone'),'STopic' =>$req->input('STopic'),'SDepartmentalSec' =>$req->input('SDepartmentalSec'),
+                'SCountry' =>$req->input('SCountry'),'SGender' =>$req->input('SGender'),'SDateOfBirth' =>$req->input('SDateOfBirth'),
+                'SModeOfAttend' =>$req->input('SModeOfAttend'),'SFirstEntry' =>$req->input('SFirstEntry'),'SYearOfGraduation' =>$req->input('SYearOfGraduation'),
+                'SUpgradeStatus' =>$req->input('SUpgradeStatus'),'SPayment' =>$req->input('SPayment'),'SCurrentEmployment'=>$req->input('SCurrentEmployment'),'SubmissionDate'=>$req->input('SubmissionDate')] );
+        return redirect('AlumniSelect');
     }
 
     public function EditAcademic(Request $req)
@@ -59,7 +86,7 @@ class EditController extends BaseController
             ->update(['ACUsername' => $req->input('ACUsername'),'ACFullname' => $req->input('ACFullname'),'ACPassword' =>bcrypt($req->input('ACPassword')),
                 'ACEmail' =>$req->input('ACEmail'),'ACDepartment' =>$req->input('ACDepartment'),
                 'ACPhone' =>$req->input('ACPhone'),'ACCountry' =>$req->input('ACCountry'),'Title' =>$req->input('ACTitle'),'Role' =>$req->input('Role'),]);
-        return redirect('Admin');
+        return redirect('AccEmpSelect');
     }
 
     public function EditProfileSupervisor(Request $req){
@@ -79,6 +106,13 @@ class EditController extends BaseController
                 'SCountry' =>$req->input('SCountry'),'SDateOfBirth' =>$req->input('SDateOfBirth'),
                 'SModeOfAttend' =>$req->input('SModeOfAttend')]);
         return redirect('Student');
+    }
+
+    public function DisplayEditAlu(Request $req){
+        $SFname = $req->session()->get('SFedit');
+        $displayEditAlu = DB::table('alumnis')->where('SFullname',$SFname)->get();
+        $deps=DB::table('departments')->select('*')->get();
+        return view('AlumnusEdit', ['displayEditAlu' => $displayEditAlu,'deps'=>$deps]);
     }
 
 }

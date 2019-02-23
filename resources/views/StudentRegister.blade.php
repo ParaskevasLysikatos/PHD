@@ -117,7 +117,7 @@
             <input type="date" class="form-control" id="SYearOfGraduation" placeholder="Enter Expected end date of studies, leave it null for automatic fill" name="SYearOfGraduation">
         </div>
         <div class="form-group">
-            <label>Undergraduate Status: </label>
+            <label>Upgrade Status: </label>
             <input type="text" class="form-control" id="SUpgradeStatus" placeholder="Enter Expected Upgrade Status" name="SUpgradeStatus">
         </div>
         <div class="form-group">

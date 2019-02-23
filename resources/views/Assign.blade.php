@@ -38,7 +38,7 @@
 <div class="col-sm">
 <center><h3 for="ACEmployee">Student:</h3></center>
     <center> <label> Select one: </label></center>
-<center> <select class="container" type="text" name="SFullname" id="SF" size="6" style="font-size:18px; width: 400px     height: 200px;">
+<center> <select class="container" type="text" name="SFullname" id="SF" size="6" style="font-size:18px; width: 400px ;    height: 200px;">
         @foreach ($displayStudent as $Stud)
         <option value="{{$Stud->SFullname}} " > {{$Stud->SFullname}}</option>
         @endforeach
@@ -109,7 +109,7 @@
         @endforeach
         </tbody>
     </table>
-</div>
+</div></div></div>
 <br>
 @include('errors');
 <br>

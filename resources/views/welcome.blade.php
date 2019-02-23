@@ -45,11 +45,11 @@
                 font-size: 120px;
             }
             a:hover {
-                background-color: yellowgreen;
+                background-color: #ff8c00;
             }
 
             .links > a {
-                color: #636b6f;
+                color: #0066cc;
                 padding: 0 25px;
                 font-size: 20px;
                 font-weight: 600;
@@ -66,8 +66,10 @@
     </head>
     <body>
             <div class="content">
+                <br>
+               
                 <div class="title m-b-md">
-                    S.E.E.R.C.
+                    <img src="seerc2.jpg" width="500" height="250" style="vertical-align:middle;" >
                 </div>
             </div>
                 <div class="links flex-center">
