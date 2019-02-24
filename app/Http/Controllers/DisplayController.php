@@ -123,7 +123,7 @@ class DisplayController extends BaseController
     {
         $SFname = session('SFedit');
         request()->validate([
-            'recordStudfile' => 'required|file|unique:studRecords,record_name'
+            'recordStudfile' => 'required|file|mimes:pdf,doc,txt,docx|unique:studRecords,record_name'
         ]);
         if($request->hasFile('recordStudfile')) {
             //Get filename with the extension

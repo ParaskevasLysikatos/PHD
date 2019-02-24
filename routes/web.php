@@ -105,9 +105,9 @@ Route::get('/StudentRegister',['middleware' => 'admin', function()
 
 Route::get('/logout', 'LoginController@Logout');
 
-Route::post('/SaveStudRec', 'DisplayController@SaveStudRecord')->middleware('admin');;
+Route::post('/SaveStudRec', 'DisplayController@SaveStudRecord')->middleware('admin');
 
-Route::post('/DownStudRec', 'DisplayController@DownStudRecord')->middleware('admin');;
+Route::post('/DownStudRec', 'DisplayController@DownStudRecord')->middleware('admin');
 
 Route::get('/download-PDF_Academic',"SearchController@pdfA")->middleware('admin');
 
