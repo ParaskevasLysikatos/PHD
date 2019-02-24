@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
         DB::table('academic_employees')->insert([
-            'ACUsername' => "paris",
-            'ACPassword' => bcrypt("123"),
-            'Role' => "Admin",
-            'ACFullname'=>"Paraskevas",
-            'ACDepartment'=>"Psychology",
-            'ACEmail' => 'paris@gmail.com',
-        ]);
+        'ACUsername' => "paris",
+        'ACPassword' => bcrypt("123"),
+        'Role' => "Supervisor",
+        'ACFullname'=>"Paraskevas",
+        'ACDepartment'=>"Psychology",
+        'ACEmail' => 'paris@gmail.com',
+    ]);
 
         DB::table('academic_employees')->insert([
             'ACUsername' => "zoe",
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
         DB::table('academic_employees')->insert([
             'ACUsername' => "chris",
             'ACPassword' => bcrypt("123"),
-            'Role' => "Director",
+            'Role' => "Supervisor",
             'ACFullname'=>"Christos",
             'ACDepartment'=>"Computer Science",
             'ACEmail' => 'chris@gmail.com',
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             'SUsername' => "alu_chris",
             'SEmail' => 'studchris@gmail.com',
             'SPassword' => bcrypt("123"),
-            'SFullname'=>"student chris",
+            'SFullname'=>"alumnus chris",
             'RN'=>"5",
             'SDepartment'=>"Business"
         ]);
