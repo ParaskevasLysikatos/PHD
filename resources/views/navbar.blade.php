@@ -7,7 +7,7 @@ list-style-type: none;
 
   }
 </style>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark"  style="position: fixed; top: 0;left:0;width: 100%;overflow: hidden;z-index: 1;">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"  style="position: fixed; top: 0;left:0;width: 100%;z-index: 1;">
     <!-- Brand -->
     <div class="container-fluid" style="background-color: #004d99">
         <div class="navbar-header" style="background-color: white;">
