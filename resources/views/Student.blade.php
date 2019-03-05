@@ -51,7 +51,8 @@
             <li class="nav-item">
                 <a class="nav-link" style="font-size:22px; color: white;" href="MyProfileStudent">Student's Profile</a>
             </li>
-            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 50%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
+            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+            <li>    <a id="top" class="nav-link"  style="color: white; font-size: 22px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
         </ul>
             <!-- Logout -->
         <ul class="nav navbar-nav navbar-right">
