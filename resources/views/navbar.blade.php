@@ -51,7 +51,7 @@ list-style-type: none;
 
 
 <br>
-<div class="collapse" id="collapseExample" style="z-index: 2;margin-top: 6%;">
+<div class="collapse" id="collapseExample" style="z-index: 2;margin-top: 4%;">
     <center><a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
             Search Academic Employee
         </a>
