@@ -33,7 +33,7 @@
                 @csrf
                     <div class="form-group">
                         <label>Type a department:</label>
-                        <input type="text" class="form-control" id="dep" placeholder="Type a department" name="dep">
+                        <input class="col-md-4" type="text" class="form-control" id="dep" placeholder="Type a department" name="dep">
                     </div>
             <div class="buttons">
                 <center><button type="submit"  class="btn btn-primary" style="width:90px; font-size:20px;">Add</button></center>
@@ -55,7 +55,7 @@
                     @csrf
                     @method('delete')
                     <label> Select one: </label>
-                    <select class="form-control" type="text" name="deptodel" size="6" style="width: 400px; height:300px; font-size:18px;  ">
+                    <select class="form-control"  type="text" name="deptodel" size="6" style="width: 600px; height:300px; font-size:18px;  ">
                         @foreach ($displayDep as $d)
                             <option value="{{$d->depName}}" >{{$d->depName}}</option>
                         @endforeach
