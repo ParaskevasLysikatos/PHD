@@ -19,7 +19,8 @@ class EditController extends BaseController
         $SFname = $request->input('SFullname');
         session(['SFedit' =>  $SFname]);
         $displayStud = DB::table('students')->where('SFullname',$SFname)->get();
-        return view('StudentEdit', ['displayStud' => $displayStud]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('StudentEdit', ['displayStud' => $displayStud,'deps'=>$deps]);
     }
 
     public function displayAlu(Request $request)

@@ -116,7 +116,8 @@ class DisplayController extends BaseController
     {
         $SFname = session('SFedit');
         $displayRec=DB::table('studRecords')->where('SFullname','=',$SFname)->get();
-        return view('StudentRecords',['SFname' => $SFname,'displayRec'=>$displayRec]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('StudentRecords',['SFname' => $SFname,'displayRec'=>$displayRec,'deps'=>$deps]);
     }
 
     public function SaveStudRecord(Request $request)
