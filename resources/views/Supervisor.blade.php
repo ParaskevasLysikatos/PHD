@@ -16,9 +16,30 @@
             padding: 0;
         }
     </style>
-    
+    <script>
+        //scroll to bottom
+        $(document).ready(function() {
+
+            $('body').dblclick(function(){
+                $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+                return false;
+            });
+
+        });
+    </script>
+    <script>
+        //scroll to top
+        $(document).ready(function() {
+
+            $('#top').click(function(){
+                $("html,body").animate({scrollTop:0}, 'slow');
+                return false;
+            });
+
+        });
+    </script>
     <body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark topnav">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark topnav" style="position: fixed; top: 0;left:0;width: 100%;z-index: 1;">
         <div class="container-fluid" style="background-color: #004d99">
         <!-- Brand -->
             <div class="navbar-header">
@@ -31,6 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link"  style="font-size:22px; color: white;" href="MyProfileSupervisor">Supervisor's Profile</a>
             </li>
+            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 10%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
         </ul>
             <!-- Logout -->
         <ul class="nav navbar-nav navbar-right">
