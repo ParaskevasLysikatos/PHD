@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a class="nav-link" style="font-size:22px; color: white;" href="MyProfileStudent">Student's Profile</a>
             </li>
-            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 10%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
+            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 50%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
         </ul>
         <!-- Logout -->
         <ul class="nav navbar-nav navbar-right">
@@ -63,6 +63,8 @@
         </ul>
     </div>
 </nav>
+<br>
+<br>
 <br>
 <h2> <center> Edit My Profile Student: @foreach ($displayProfStud as $pStud) {{$pStud->SFullname}} @endforeach </center></h2>
 

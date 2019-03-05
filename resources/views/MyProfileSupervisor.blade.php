@@ -53,7 +53,7 @@
             <li class="nav-item">
                 <a class="nav-link"  style="font-size:22px; color: white;" href="MyProfileSupervisor">Supervisor's Profile</a>
             </li>
-            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 10%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
+            <li>    <a id="top" class="nav-link"  style="color: white;margin-left: 50%; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
         </ul>
         <!-- Logout -->
         <ul class="nav navbar-nav navbar-right">
@@ -70,6 +70,8 @@
         padding: 0;
     }
 </style>
+<br>
+<br>
 <br>
 <h2><center> Edit My Profile Supervisor:@foreach ($displayProfSup as $psup) {{$psup->ACFullname}} @endforeach</center></h2>
 <div class="btn">
