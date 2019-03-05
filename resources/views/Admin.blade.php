@@ -12,7 +12,7 @@
 
 
 <!-- new nav starts here-->
-@include('navbar')
+@include('navbar');
 
         <h3 style="text-align: center">Welcome {{$displayFullname->ACFullname}}</h3>
         <br>

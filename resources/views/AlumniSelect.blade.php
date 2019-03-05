@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar')
+@include('navbar');
 <br>
 
 <center><h1> Select an Alumnus </h1></center>

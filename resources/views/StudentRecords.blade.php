@@ -19,6 +19,7 @@
 
 </head>
 <body>
+@include('navbar');
 <br>
 <h2> <center> Record of Student: {{$SFname}} </center></h2>
 

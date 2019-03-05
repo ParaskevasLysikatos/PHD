@@ -7,7 +7,7 @@ list-style-type: none;
 
   }
 </style>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark"  style="position: fixed; top: 0;left:0;width: 100%;overflow: hidden;z-index: 1;">
     <!-- Brand -->
     <div class="container-fluid" style="background-color: #004d99">
         <div class="navbar-header" style="background-color: white;">
@@ -39,6 +39,8 @@ list-style-type: none;
             <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"  style="background-color: #ff8c00;font-size:18px;">
                 Search
             </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li>    <a id="top" class="nav-link"  style="color: white; font-size: 18px;" href="">Scroll<img src="https://img.icons8.com/doodle/25/000000/up.png"> </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a class="navbar-brand" href="{{ url('/logout') }}">Logout</a></li>
@@ -243,3 +245,26 @@ list-style-type: none;
         </div>
     </div>
 </div>
+<br>
+<script>
+    //scroll to bottom
+    $(document).ready(function() {
+
+        $('body').dblclick(function(){
+            $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+            return false;
+        });
+
+    });
+</script>
+<script>
+    //scroll to top
+    $(document).ready(function() {
+
+        $('#top').click(function(){
+            $("html,body").animate({scrollTop:0}, 'slow');
+            return false;
+        });
+
+    });
+</script>

@@ -10,7 +10,7 @@
 </head>
 <body>
 <!-- new nav starts here-->
-@include('navbar')
+@include('navbar');
 <br>
 <div class="content">
     <div class="title m-b-md">
