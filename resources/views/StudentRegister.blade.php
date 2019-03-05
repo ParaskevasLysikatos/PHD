@@ -22,7 +22,7 @@
 <br>
 <h2> <center> Register a new Student </center></h2>
 
-<a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;">Back</button></a>
+<a href="Admin"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px;font-size:22px;">Back</button></a>
 
 <div class="container">
     <br>
@@ -134,7 +134,7 @@
             <input type="text" class="form-control" id="SCurrentEmployment" placeholder="Current Employment" name="SCurrentEmployment">
         </div>
 
-        <center><button type="submit" class="btn btn-primary">Submit</button></center>
+        <center><button type="submit" class="btn btn-primary" style="font-size:22px;">Submit</button></center>
         <br><br>
     </form>
     </div>

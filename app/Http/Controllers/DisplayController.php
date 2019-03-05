@@ -76,7 +76,8 @@ class DisplayController extends BaseController
     public function displayDep()
     {
         $displayDep = DB::table('departments')->select('depName')->get();
-        return view('ManageDep', ['displayDep' => $displayDep]);
+        $deps = DB::table('departments')->select('depName')->get();
+        return view('ManageDep', ['displayDep' => $displayDep,'deps'=>$deps]);
     }
 
     public function  displayAcadReg()
