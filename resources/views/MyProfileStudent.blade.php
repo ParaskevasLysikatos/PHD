@@ -39,6 +39,13 @@
 
     });
 </script>
+<style>
+    .navbar {
+        list-style-type: none;
+        margin-top:0%;
+        padding: 0;
+    }
+</style>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="position: fixed; top: 0;left:0;width: 100%;z-index: 1;">
     <div class="container-fluid" style="background-color: #004d99">
@@ -64,6 +71,8 @@
         </ul>
     </div>
 </nav>
+<br>
+<br>
 <br>
 <br>
 <br>

@@ -65,6 +65,8 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
     <div class="content">
         <div class="title m-b-md">
             <h2 style="text-align: center;">Student's Profile of  @foreach ($displayStud as $stud){{$stud->SFullname}}@endforeach</h2>
