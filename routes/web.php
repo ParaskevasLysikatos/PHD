@@ -99,9 +99,7 @@ Route::get('/Login', function()
     return view('Login');
 })->name('home');
 
-Route::get('/StudentRegister',['middleware' => 'admin', function()
-{return view('StudentRegister');
-}]);
+Route::get('/StudentRegister','DisplayController@displayStudReg')->middleware('admin');
 
 Route::get('/logout', 'LoginController@Logout');
 
