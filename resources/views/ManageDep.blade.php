@@ -33,7 +33,7 @@
                 @csrf
                     <div class="form-group">
                         <label>Type a department:</label>
-                        <input class="col-md-4" type="text" class="form-control" id="dep" placeholder="Type a department" name="dep">
+                        <input class="col-md-4" type="text" class="form-control" id="dep" placeholder="" name="dep">
                     </div>
             <div class="buttons">
                 <center><button type="submit"  class="btn btn-primary" style="width:90px; font-size:20px;">Add</button></center>
