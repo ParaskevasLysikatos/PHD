@@ -23,6 +23,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Deparment</th>
+                <th>Employment</th>
             </tr>
             @foreach ($dataAlu as $stud)
                 <tr>
@@ -30,6 +31,7 @@
                     <td> {{$stud->SUsername}}</td>
                     <td> {{$stud->SEmail}} </td>
                     <td> {{$stud->SDepartment}} </td>
+                    <td> {{$stud->SCurrentEmployment}} </td>
                 </tr>
             @endforeach
         </table>
