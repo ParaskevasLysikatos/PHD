@@ -76,6 +76,8 @@
 <br>
 <br>
 <br>
+<br>
+<br>
 <h2> <center> Edit My Profile Student: @foreach ($displayProfStud as $pStud) {{$pStud->SFullname}} @endforeach </center></h2>
 
 <div class="btn">

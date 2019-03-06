@@ -69,7 +69,7 @@
                 <br>
                
                 <div class="title m-b-md">
-                    <img src="seerc2.jpg" width="500" height="250" style="vertical-align:middle;" >
+                    <img src="seerc2.jpg" width="500" height="250" style="vertical-align:middle; horiz-align: center;" >
                 </div>
             </div>
                 <div class="links flex-center">

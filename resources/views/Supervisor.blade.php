@@ -69,6 +69,8 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
             <div class="content">
                 <div class="title m-b-md">
                     <h2 style="text-align: center;">Supervisor's Profile of @foreach ($displaySuperv as $acad){{$acad->ACFullname}}@endforeach</h2>

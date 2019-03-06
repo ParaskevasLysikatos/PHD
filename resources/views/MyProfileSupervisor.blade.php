@@ -76,6 +76,8 @@
 <br>
 <br>
 <br>
+<br>
+<br>
 <h2><center> Edit My Profile Supervisor:@foreach ($displayProfSup as $psup) {{$psup->ACFullname}} @endforeach</center></h2>
 <div class="btn">
     <a href="Supervisor"><button type="button" class="btn btn-success" style="width:90px; margin-left:100px; font-size:22px;">Back</button></a>
