@@ -10,7 +10,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 
 <style>
     select {
@@ -111,7 +111,7 @@
     </table>
 </div></div></div>
 <br>
-@include('errors');
+@include('errors')
 <br>
 </body>
 </html>

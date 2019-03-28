@@ -18,7 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 <br>
 <h2> <center> Edit an Alumnus:@foreach ($displayEditAlu as $s) {{$s->SFullname}} @endforeach </center></h2>
 

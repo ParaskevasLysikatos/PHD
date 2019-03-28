@@ -18,8 +18,8 @@ class RegisterController extends BaseController
         request()->validate([
             'ACFullname'=>'required|unique:academic_employees,ACFullname',
             'ACUsername'=>'required|unique:academic_employees,ACUsername',
-            'ACEmail'=>'required',
-            'ACPassword'=>'required',
+            'Role'=>'required',
+
         ]);
 
         $ACFullname = $request->input('ACFullname');
@@ -52,10 +52,7 @@ class RegisterController extends BaseController
         request()->validate([
             'SFullname'=>'required|unique:students,SFullname',
             'SUsername'=>'required|unique:students,SUsername',
-            'RN'=>'required',
-            'SPassword'=>'required',
-            'SDepartment'=>'required',
-
+            'Supervisor2'=>'different:Supervisor1',
         ]);
 
         $SFullname = $request->input('SFullname');
@@ -77,6 +74,8 @@ class RegisterController extends BaseController
         $SUpgradeStatus= $request->input('SUpgradeStatus');
         $SCurrentEmployment = $request->input ('SCurrentEmployment');
         $SubmissionDate= $request->input('SubmissionDate');
+        $super1=$request->input('Supervisor1');
+        $super2=$request->input('Supervisor2');
 
         if($SModeOfAttend!=null&&$SFirstEntry!=null&&$SYearOfGraduation==null)
         {
@@ -91,6 +90,22 @@ class RegisterController extends BaseController
                 $SYearOfGraduation=$SYearOfGraduation->addYears(2);
             }
         }
+
+        $display = DB::table('connections')->where('ACFullname',$super1)->where('SFullname',$SFullname)->exists();
+        $display2 = DB::table('connections')->where('ACFullname',$super2)->where('SFullname',$SFullname)->exists();
+        if(!$display)
+        {
+            if($super1!=null)
+            { DB::table('connections')->insert(['SFullname' => $SFullname,'ACFullname'=>$super1]);}
+        }
+        else{ return redirect('StudentRegister')->withErrors("connection exists for Supervisor1");}
+
+        if(!$display2)
+        {
+            if($super2!=null)
+            {DB::table('connections')->insert(['SFullname' => $SFullname,'ACFullname'=>$super2]);}
+        }
+        else{ return redirect('StudentRegister')->withErrors("connection exists for Supervisor2");}
 
         DB::table('students')->insert([
             'SFullname' => $SFullname,

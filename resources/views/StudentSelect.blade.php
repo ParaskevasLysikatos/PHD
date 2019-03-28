@@ -13,7 +13,7 @@
 
 
 <!-- new nav starts here-->
-@include('navbar');
+@include('navbar')
 <br>
 
 <center><h1> Select a Student </h1></center>
@@ -31,6 +31,6 @@
         <button type="submit" class="btn btn-primary" style="font-size:18px;">Select student</button>
     </form></center>
 <br><br>
-
+@include('errors')
 </body>
 </html>

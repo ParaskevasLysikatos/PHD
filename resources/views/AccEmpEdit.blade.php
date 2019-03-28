@@ -18,7 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 <br>
 <h2><center> Edit an Academic Employee:@foreach ($displayEditAc as $a) {{$a->ACFullname}} @endforeach </center></h2>
 
@@ -36,7 +36,7 @@
         @foreach ($displayEditAc as $a)
         <div class="form-group">
             <label>Full Name:</label>
-            <input type="text" class="form-control" id="ACFullname" placeholder="Enter Full Name" name="ACFullname" value="{{$a->ACFullname}}">
+            <input type="text" class="form-control" id="ACFullname" placeholder="Enter Full Name" name="ACFullname" value="{{$a->ACFullname}}"><span style="color:Tomato;">not change this</span>
         </div>
             <div class="form-group">
                 <label>Username: </label>
@@ -59,7 +59,7 @@
         
         <div class="form-group">
             <label>Department: </label>
-            <select class="form-control" id="ACDepartment" name="ACDepartment" value="{{$a->ACDepartment}}" required >
+            <select class="form-control" id="ACDepartment" name="ACDepartment" value="{{$a->ACDepartment}}"  >
                 <option></option>
                 @foreach($deps as $d)
                 <option value="{{$d->depName}}">{{$d->depName}}</option>@endforeach

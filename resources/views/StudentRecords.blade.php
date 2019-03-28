@@ -19,7 +19,7 @@
 
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 <br>
 <h2> <center> Record of Student: {{$SFname}} </center></h2>
 
@@ -99,7 +99,7 @@
     <br>
 
 </div>
-@include('errors');
+@include('errors')
 </body>
 </html>
 

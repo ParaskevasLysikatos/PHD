@@ -20,7 +20,18 @@ class EditController extends BaseController
         session(['SFedit' =>  $SFname]);
         $displayStud = DB::table('students')->where('SFullname',$SFname)->get();
         $deps = DB::table('departments')->select('depName')->get();
-        return view('StudentEdit', ['displayStud' => $displayStud,'deps'=>$deps]);
+        $super=DB::table('academic_employees')->select('ACFullname')->where('Role','=','Supervisor')->get();
+        $check1=DB::table('connections')->select('ACFullname')->where('SFullname','=',$SFname)->get()->count();
+        $check2=DB::table('connections')->select('ACFullname')->where('SFullname','=',$SFname)->get()->count();
+        if($check1>0)
+        {$super1=DB::table('connections')->select('ACFullname')->where('SFullname','=',$SFname)->orderBy('ACFullname', 'desc')->first();
+        $super1=$super1->ACFullname;}
+        else {$super1=null;}
+        if($check2>1)
+        {$super2=DB::table('connections')->select('ACFullname')->where('SFullname','=',$SFname)->orderBy('ACFullname', 'asc')->first();
+        $super2=$super2->ACFullname;}
+        else {$super2=null;}
+        return view('StudentEdit', ['displayStud' => $displayStud,'deps'=>$deps,'super'=>$super,'super1'=>$super1,'super2'=>$super2]);
     }
 
     public function displayAlu(Request $request)
@@ -55,7 +66,22 @@ class EditController extends BaseController
 
     public function EditStudent(Request $req)
     {
+        request()->validate([
+            'SFullname'=>'required',
+            'SUsername'=>'required',
+            'Supervisor2'=>'different:Supervisor1',
+        ]);
         $SFedit = $req->session()->get('SFedit');
+        $Sup1 = $req->input('Supervisor1');
+        $Sup2 = $req->input('Supervisor2');
+        $del=DB::table('connections')->where('SFullname',$SFedit)->delete();
+
+        if($Sup1!='')
+        {$super1=DB::table('connections')->insert(['ACFullname' => $req->input('Supervisor1'),'SFullname'=>$SFedit]);}
+
+        if($Sup2!='')
+        {$super2=DB::table('connections')->insert(['ACFullname' => $req->input('Supervisor2'),'SFullname'=>$SFedit]);}
+
         $displayStud = DB::table('students')->where('SFullname',$SFedit)
             ->update(['SUsername' => $req->input('SUsername'),'SFullname' => $req->input('SFullname'),'SPassword' =>bcrypt($req->input('SPassword')),
                 'RN' =>$req->input('RN'),'SEmail' =>$req->input('SEmail'),'SDepartment' =>$req->input('SDepartment'),
@@ -69,6 +95,10 @@ class EditController extends BaseController
 
     public function EditAlumnus(Request $req)
     {
+        request()->validate([
+            'SFullname'=>'required|unique:alumnis,SFullname',
+            'SUsername'=>'required|unique:alumnis,SUsername',
+        ]);
         $SFedit = $req->session()->get('SFedit');
         $displayStud = DB::table('alumnis')->where('SFullname',$SFedit)
             ->update(['SUsername' => $req->input('SUsername'),'SFullname' => $req->input('SFullname'),'SPassword' =>bcrypt($req->input('SPassword')),
@@ -82,6 +112,10 @@ class EditController extends BaseController
 
     public function EditAcademic(Request $req)
     {
+        request()->validate([
+            'SFullname'=>'required|unique:academic_employees,ACFullname',
+            'SUsername'=>'required|unique:academic_employees,ACUsername',
+        ]);
         $ACFedit = $req->session()->get('ACFedit');
         $displayAcad = DB::table('academic_employees')->where('ACFullname',$ACFedit)
             ->update(['ACUsername' => $req->input('ACUsername'),'ACFullname' => $req->input('ACFullname'),'ACPassword' =>bcrypt($req->input('ACPassword')),

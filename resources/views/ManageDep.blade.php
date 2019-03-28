@@ -18,7 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 <br>
 <h2><center> Manage Departments </center></h2>
 
@@ -66,6 +66,6 @@
         </div>
     </div>
 </div>
-@include('errors');
+@include('errors')
 </body>
 </html>

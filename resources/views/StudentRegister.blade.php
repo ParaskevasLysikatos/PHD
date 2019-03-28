@@ -18,7 +18,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-@include('navbar');
+@include('navbar')
 <br>
 <h2> <center> Register a new Student </center></h2>
 
@@ -33,7 +33,7 @@
         @csrf
         <div class="form-group">
             <label>Full Name:</label>
-            <input type="text" class="form-control" id="SFullname" placeholder="Enter Full Name" name="SFullname">
+            <input type="text" class="form-control" id="SFullname" placeholder="Enter Full Name" name="SFullname"><span style="color:Tomato;">Required</span>
         </div>
 
         <div class="form-group">
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
             <label>Username: </label>
-            <input type="text" class="form-control" id="SUsername" placeholder="Enter Username" name="SUsername">
+            <input type="text" class="form-control" id="SUsername" placeholder="Enter Username" name="SUsername"><span style="color:Tomato;">Required</span>
         </div>
         <div class="form-group">
             <label>Password: </label>
@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
             <label>Department: </label>
-            <select class="form-control" id="SDepartment" name="SDepartment" required>
+            <select class="form-control" id="SDepartment" name="SDepartment" >
                 <option></option>
                 @foreach($deps as $d)
                     <option value="{{$d->depName}}">{{$d->depName}}</option>@endforeach
@@ -72,6 +72,22 @@
         <div class="form-group">
             <label>Deparmental Secretary: </label>
             <input type="text" class="form-control" id="SDepartmentalSec" placeholder="Enter Departmental Secretary" name="SDepartmentalSec">
+        </div>
+        <div class="form-group">
+            <label>Supervisor 1: </label>
+            <select class="form-control" id="Super1" name="Supervisor1" >
+                <option></option>
+                @foreach($super as $s)
+                    <option value="{{$s->ACFullname}}">{{$s->ACFullname}}</option>@endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Supervisor 2: </label>
+            <select class="form-control" id="Super2" name="Supervisor2" >
+                <option></option>
+                @foreach($super as $s)
+                    <option value="{{$s->ACFullname}}">{{$s->ACFullname}}</option>@endforeach
+            </select>
         </div>
         </div>
         <div class="col">
@@ -130,7 +146,9 @@
     </div>
     </div>
 </div>
+<br>
 @include('errors')
+<br>
 </body>
 </html>
 

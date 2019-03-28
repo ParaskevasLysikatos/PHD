@@ -34,11 +34,11 @@
   @csrf
     <div class="form-group">
       <label>Full Name:</label>
-      <input type="text" class="form-control" id="ACFullname" placeholder="Enter Full Name" name="ACFullname">
+      <input type="text" class="form-control" id="ACFullname" placeholder="Enter Full Name" name="ACFullname"><span style="color:Tomato;">Required</span>
     </div>
     <div class="form-group">
     <label>Username: </label>
-      <input type="text" class="form-control" id="ACUsername" placeholder="Enter Username" name="ACUsername">
+      <input type="text" class="form-control" id="ACUsername" placeholder="Enter Username" name="ACUsername"><span style="color:Tomato;">Required</span>
     </div>
     <div class="form-group">
     <label>Email: </label>
@@ -56,7 +56,7 @@
     </div>
     <div class="form-group">
     <label>Department: </label>
-    <select class="form-control" id="ACDepartment" name="ACDepartment" required>
+    <select class="form-control" id="ACDepartment" name="ACDepartment" >
             <option></option>
         @foreach($deps as $d)
             <option value="{{$d->depName}}">{{$d->depName}}</option>@endforeach

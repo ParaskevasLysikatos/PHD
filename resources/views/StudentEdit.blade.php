@@ -39,7 +39,7 @@
             </div>
         <div class="form-group">
             <label>Full Name:</label>
-            <input type="text" class="form-control" id="SFullname" placeholder="Enter Full Name" name="SFullname" value="{{$s->SFullname}}">
+            <input type="text" class="form-control" id="SFullname" placeholder="Enter Full Name" name="SFullname" value="{{$s->SFullname}}"><span style="color:Tomato;">not change this</span>
         </div>
 
         <div class="form-group">
@@ -58,7 +58,7 @@
         </div>
         <div class="form-group">
             <label>Department: </label>
-            <select class="form-control" id="SDepartment" name="SDepartment" value="{{$s->SDepartment}}"  required>
+            <select class="form-control" id="SDepartment" name="SDepartment" value="{{$s->SDepartment}}" >
                 @foreach($deps as $d)
                     <option value="{{$d->depName}}">{{$d->depName}}</option>@endforeach
             </select>
@@ -75,7 +75,22 @@
             <label>Deparmental Secretary: </label>
             <input type="text" class="form-control" id="SDeparmentalSec" placeholder="Enter Deparmental Secretary" name="SDepartmentalSec" value="{{$s->SDepartmentalSec}}">
         </div>
-        
+            <div class="form-group">
+                <label>Supervisor 1: </label>
+                <select class="form-control" id="Super1" name="Supervisor1" >
+                    <option>{{$super1}}</option>
+                    @foreach($super as $p)
+                        <option value="{{$p->ACFullname}}">{{$p->ACFullname}}</option>@endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Supervisor 2: </label>
+                <select class="form-control" id="Super2" name="Supervisor2" >
+                    <option>{{$super2}}</option>
+                    @foreach($super as $p)
+                        <option value="{{$p->ACFullname}}">{{$p->ACFullname}}</option>@endforeach
+                </select>
+            </div>
         </div>
         <div class="col">
         <div class="form-group">

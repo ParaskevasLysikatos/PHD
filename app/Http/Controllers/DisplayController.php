@@ -89,7 +89,8 @@ class DisplayController extends BaseController
     public function displayStudReg()
     {
         $deps = DB::table('departments')->select('depName')->get();
-        return view('StudentRegister', ['deps' => $deps]);
+        $super=DB::table('academic_employees')->select('ACFullname')->where('Role','=','Supervisor')->get();
+        return view('StudentRegister', ['deps' => $deps,'super'=>$super]);
     }
 
     public function displaySelectAlu()

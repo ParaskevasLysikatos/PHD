@@ -65,13 +65,7 @@ class LoginController extends BaseController
             return redirect('Supervisor');
 
         }
-        else if($true_username===$username and $true_password and $role === "Director")
-        {
 
-            $req->session()->put('Uname', $username);
-            return redirect('Director');
-
-        }
         else if($Strue_username===$username and $Strue_password) //check student
         {
 
