@@ -13,13 +13,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-        
+
     </head>
     <body>
     <br><br>
     <center><h1 style="color: #004d99;"> Login Page</h1></center>
     <br>
-                <center>      
+                <center>
         <form method="post">
                     @csrf
             <div class="form-group col-md-4">
@@ -31,10 +31,14 @@
                 <label for="Password">Password</label>
                 <input  type="Password" name="Password" class="form-control"  placeholder="Enter Password">
             </div><br>
-            
+
             <button type="submit" class="btn btn-primary" style=" background-color: #004d99;font-size:22px;">Submit</button>
-            </form> 
+            <p style=" opacity: 0.3;margin-top:2%">(admin)username:zoe,password:123</p>
+            <p style=" opacity: 0.3;">(Professor)username:nikos,password:123</p>
+            <p style=" opacity: 0.3;">(student)username:stud_paris,password:123</p>
+            </form>
             </center>
     @include('errors')
+
     </body>
 </html>
