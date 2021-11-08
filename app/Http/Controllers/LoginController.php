@@ -81,7 +81,6 @@ class LoginController extends BaseController
     public function Logout()
     {
         Session::flush();
-        return view('/welcome');
+        return view('/Login');
     }
 }
-
