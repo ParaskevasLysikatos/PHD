@@ -78,9 +78,10 @@ class LoginController extends BaseController
         }
     }
 
-    public function Logout()
+    public function Logout(Request $req)
     {
+        $username=session()->get('Uname');
         Session::flush();
-        return view('/Login');
+        return redirect('Login')->with("User ".$username." have been logged out");
     }
 }
