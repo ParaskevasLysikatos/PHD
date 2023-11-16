@@ -2,14 +2,13 @@
 
 namespace Illuminate\Database\Schema\Grammars;
 
-use RuntimeException;
-use Doctrine\DBAL\Types\Type;
-use Illuminate\Support\Fluent;
-use Doctrine\DBAL\Schema\Table;
-use Illuminate\Database\Connection;
-use Doctrine\DBAL\Schema\Comparator;
-use Illuminate\Database\Schema\Blueprint;
 use Doctrine\DBAL\Schema\AbstractSchemaManager as SchemaManager;
+use Doctrine\DBAL\Schema\Table;
+use Doctrine\DBAL\Types\Type;
+use Illuminate\Database\Connection;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Fluent;
+use RuntimeException;
 
 class ChangeColumn
 {
@@ -19,7 +18,7 @@ class ChangeColumn
      * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Illuminate\Support\Fluent  $command
-     * @param  \Illuminate\Database\Connection $connection
+     * @param  \Illuminate\Database\Connection  $connection
      * @return array
      *
      * @throws \RuntimeException
@@ -28,17 +27,21 @@ class ChangeColumn
     {
         if (! $connection->isDoctrineAvailable()) {
             throw new RuntimeException(sprintf(
-                'Changing columns for table "%s" requires Doctrine DBAL; install "doctrine/dbal".',
+                'Changing columns for table "%s" requires Doctrine DBAL. Please install the doctrine/dbal package.',
                 $blueprint->getTable()
             ));
         }
 
+        $schema = $connection->getDoctrineSchemaManager();
+        $databasePlatform = $connection->getDoctrineConnection()->getDatabasePlatform();
+        $databasePlatform->registerDoctrineTypeMapping('enum', 'string');
+
         $tableDiff = static::getChangedDiff(
-            $grammar, $blueprint, $schema = $connection->getDoctrineSchemaManager()
+            $grammar, $blueprint, $schema
         );
 
-        if ($tableDiff !== false) {
-            return (array) $schema->getDatabasePlatform()->getAlterTableSQL($tableDiff);
+        if (! $tableDiff->isEmpty()) {
+            return (array) $databasePlatform->getAlterTableSQL($tableDiff);
         }
 
         return [];
@@ -50,13 +53,13 @@ class ChangeColumn
      * @param  \Illuminate\Database\Schema\Grammars\Grammar  $grammar
      * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
      * @param  \Doctrine\DBAL\Schema\AbstractSchemaManager  $schema
-     * @return \Doctrine\DBAL\Schema\TableDiff|bool
+     * @return \Doctrine\DBAL\Schema\TableDiff
      */
     protected static function getChangedDiff($grammar, Blueprint $blueprint, SchemaManager $schema)
     {
-        $current = $schema->listTableDetails($grammar->getTablePrefix().$blueprint->getTable());
+        $current = $schema->introspectTable($grammar->getTablePrefix().$blueprint->getTable());
 
-        return (new Comparator)->diffTable(
+        return $schema->createComparator()->compareTables(
             $current, static::getTableWithColumnChanges($blueprint, $current)
         );
     }
@@ -82,7 +85,10 @@ class ChangeColumn
                 if (! is_null($option = static::mapFluentOptionToDoctrine($key))) {
                     if (method_exists($column, $method = 'set'.ucfirst($option))) {
                         $column->{$method}(static::mapFluentValueToDoctrine($option, $value));
+                        continue;
                     }
+
+                    $column->setPlatformOption($option, static::mapFluentValueToDoctrine($option, $value));
                 }
             }
         }
@@ -99,7 +105,7 @@ class ChangeColumn
      */
     protected static function getDoctrineColumn(Table $table, Fluent $fluent)
     {
-        return $table->changeColumn(
+        return $table->modifyColumn(
             $fluent['name'], static::getDoctrineColumnChangeOptions($fluent)
         )->getColumn($fluent['name']);
     }
@@ -114,13 +120,22 @@ class ChangeColumn
     {
         $options = ['type' => static::getDoctrineColumnType($fluent['type'])];
 
-        if (in_array($fluent['type'], ['text', 'mediumText', 'longText'])) {
+        if (! in_array($fluent['type'], ['smallint', 'integer', 'bigint'])) {
+            $options['autoincrement'] = false;
+        }
+
+        if (in_array($fluent['type'], ['tinyText', 'text', 'mediumText', 'longText'])) {
             $options['length'] = static::calculateDoctrineTextLength($fluent['type']);
         }
 
-        if ($fluent['type'] === 'json') {
+        if ($fluent['type'] === 'char') {
+            $options['fixed'] = true;
+        }
+
+        if (static::doesntNeedCharacterOptions($fluent['type'])) {
             $options['customSchemaOptions'] = [
                 'collation' => '',
+                'charset' => '',
             ];
         }
 
@@ -137,23 +152,16 @@ class ChangeColumn
     {
         $type = strtolower($type);
 
-        switch ($type) {
-            case 'biginteger':
-                $type = 'bigint';
-                break;
-            case 'smallinteger':
-                $type = 'smallint';
-                break;
-            case 'mediumtext':
-            case 'longtext':
-                $type = 'text';
-                break;
-            case 'binary':
-                $type = 'blob';
-                break;
-        }
-
-        return Type::getType($type);
+        return Type::getType(match ($type) {
+            'biginteger' => 'bigint',
+            'smallinteger' => 'smallint',
+            'tinytext', 'mediumtext', 'longtext' => 'text',
+            'binary' => 'blob',
+            'uuid' => 'guid',
+            'char' => 'string',
+            'double' => 'float',
+            default => $type,
+        });
     }
 
     /**
@@ -164,14 +172,39 @@ class ChangeColumn
      */
     protected static function calculateDoctrineTextLength($type)
     {
-        switch ($type) {
-            case 'mediumText':
-                return 65535 + 1;
-            case 'longText':
-                return 16777215 + 1;
-            default:
-                return 255 + 1;
-        }
+        return match ($type) {
+            'tinyText' => 1,
+            'mediumText' => 65535 + 1,
+            'longText' => 16777215 + 1,
+            default => 255 + 1,
+        };
+    }
+
+    /**
+     * Determine if the given type does not need character / collation options.
+     *
+     * @param  string  $type
+     * @return bool
+     */
+    protected static function doesntNeedCharacterOptions($type)
+    {
+        return in_array($type, [
+            'bigInteger',
+            'binary',
+            'boolean',
+            'date',
+            'dateTime',
+            'decimal',
+            'double',
+            'float',
+            'integer',
+            'json',
+            'mediumInteger',
+            'smallInteger',
+            'time',
+            'timestamp',
+            'tinyInteger',
+        ]);
     }
 
     /**
@@ -182,19 +215,13 @@ class ChangeColumn
      */
     protected static function mapFluentOptionToDoctrine($attribute)
     {
-        switch ($attribute) {
-            case 'type':
-            case 'name':
-                return;
-            case 'nullable':
-                return 'notnull';
-            case 'total':
-                return 'precision';
-            case 'places':
-                return 'scale';
-            default:
-                return $attribute;
-        }
+        return match ($attribute) {
+            'type', 'name' => null,
+            'nullable' => 'notnull',
+            'total' => 'precision',
+            'places' => 'scale',
+            default => $attribute,
+        };
     }
 
     /**

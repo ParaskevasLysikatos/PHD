@@ -4,6 +4,12 @@ namespace Illuminate\Notifications;
 
 use Illuminate\Database\Eloquent\Collection;
 
+/**
+ * @template TKey of array-key
+ * @template TModel of DatabaseNotification
+ *
+ * @extends \Illuminate\Database\Eloquent\Collection<TKey, TModel>
+ */
 class DatabaseNotificationCollection extends Collection
 {
     /**
@@ -13,9 +19,7 @@ class DatabaseNotificationCollection extends Collection
      */
     public function markAsRead()
     {
-        $this->each(function ($notification) {
-            $notification->markAsRead();
-        });
+        $this->each->markAsRead();
     }
 
     /**
@@ -25,8 +29,6 @@ class DatabaseNotificationCollection extends Collection
      */
     public function markAsUnread()
     {
-        $this->each(function ($notification) {
-            $notification->markAsUnread();
-        });
+        $this->each->markAsUnread();
     }
 }

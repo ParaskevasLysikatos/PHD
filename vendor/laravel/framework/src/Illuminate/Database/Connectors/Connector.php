@@ -2,11 +2,10 @@
 
 namespace Illuminate\Database\Connectors;
 
-use PDO;
 use Exception;
-use Throwable;
-use Doctrine\DBAL\Driver\PDOConnection;
 use Illuminate\Database\DetectsLostConnections;
+use PDO;
+use Throwable;
 
 class Connector
 {
@@ -29,8 +28,8 @@ class Connector
      * Create a new PDO connection.
      *
      * @param  string  $dsn
-     * @param  array   $config
-     * @param  array   $options
+     * @param  array  $config
+     * @param  array  $options
      * @return \PDO
      *
      * @throws \Exception
@@ -63,23 +62,7 @@ class Connector
      */
     protected function createPdoConnection($dsn, $username, $password, $options)
     {
-        if (class_exists(PDOConnection::class) && ! $this->isPersistentConnection($options)) {
-            return new PDOConnection($dsn, $username, $password, $options);
-        }
-
         return new PDO($dsn, $username, $password, $options);
-    }
-
-    /**
-     * Determine if the connection is persistent.
-     *
-     * @param  array  $options
-     * @return bool
-     */
-    protected function isPersistentConnection($options)
-    {
-        return isset($options[PDO::ATTR_PERSISTENT]) &&
-               $options[PDO::ATTR_PERSISTENT];
     }
 
     /**
@@ -89,7 +72,7 @@ class Connector
      * @param  string  $dsn
      * @param  string  $username
      * @param  string  $password
-     * @param  array   $options
+     * @param  array  $options
      * @return \PDO
      *
      * @throws \Exception

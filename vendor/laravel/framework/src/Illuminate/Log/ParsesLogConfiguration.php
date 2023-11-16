@@ -3,7 +3,7 @@
 namespace Illuminate\Log;
 
 use InvalidArgumentException;
-use Monolog\Logger as Monolog;
+use Monolog\Level;
 
 trait ParsesLogConfiguration
 {
@@ -13,14 +13,14 @@ trait ParsesLogConfiguration
      * @var array
      */
     protected $levels = [
-        'debug' => Monolog::DEBUG,
-        'info' => Monolog::INFO,
-        'notice' => Monolog::NOTICE,
-        'warning' => Monolog::WARNING,
-        'error' => Monolog::ERROR,
-        'critical' => Monolog::CRITICAL,
-        'alert' => Monolog::ALERT,
-        'emergency' => Monolog::EMERGENCY,
+        'debug' => Level::Debug,
+        'info' => Level::Info,
+        'notice' => Level::Notice,
+        'warning' => Level::Warning,
+        'error' => Level::Error,
+        'critical' => Level::Critical,
+        'alert' => Level::Alert,
+        'emergency' => Level::Emergency,
     ];
 
     /**
@@ -50,6 +50,25 @@ trait ParsesLogConfiguration
     }
 
     /**
+     * Parse the action level from the given configuration.
+     *
+     * @param  array  $config
+     * @return int
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function actionLevel(array $config)
+    {
+        $level = $config['action_level'] ?? 'debug';
+
+        if (isset($this->levels[$level])) {
+            return $this->levels[$level];
+        }
+
+        throw new InvalidArgumentException('Invalid log action level.');
+    }
+
+    /**
      * Extract the log channel from the given configuration.
      *
      * @param  array  $config
@@ -57,10 +76,6 @@ trait ParsesLogConfiguration
      */
     protected function parseChannel(array $config)
     {
-        if (! isset($config['name'])) {
-            return $this->getFallbackChannelName();
-        }
-
-        return $config['name'];
+        return $config['name'] ?? $this->getFallbackChannelName();
     }
 }

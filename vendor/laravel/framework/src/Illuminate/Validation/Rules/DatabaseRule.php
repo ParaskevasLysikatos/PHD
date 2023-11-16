@@ -2,7 +2,10 @@
 
 namespace Illuminate\Validation\Rules;
 
+use BackedEnum;
 use Closure;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Database\Eloquent\Model;
 
 trait DatabaseRule
 {
@@ -43,25 +46,61 @@ trait DatabaseRule
      */
     public function __construct($table, $column = 'NULL')
     {
-        $this->table = $table;
         $this->column = $column;
+
+        $this->table = $this->resolveTableName($table);
+    }
+
+    /**
+     * Resolves the name of the table from the given string.
+     *
+     * @param  string  $table
+     * @return string
+     */
+    public function resolveTableName($table)
+    {
+        if (! str_contains($table, '\\') || ! class_exists($table)) {
+            return $table;
+        }
+
+        if (is_subclass_of($table, Model::class)) {
+            $model = new $table;
+
+            if (str_contains($model->getTable(), '.')) {
+                return $table;
+            }
+
+            return implode('.', array_map(function (string $part) {
+                return trim($part, '.');
+            }, array_filter([$model->getConnectionName(), $model->getTable()])));
+        }
+
+        return $table;
     }
 
     /**
      * Set a "where" constraint on the query.
      *
-     * @param  string|\Closure  $column
-     * @param  array|string|null  $value
+     * @param  \Closure|string  $column
+     * @param  \Illuminate\Contracts\Support\Arrayable|\BackedEnum|\Closure|array|string|int|bool|null  $value
      * @return $this
      */
     public function where($column, $value = null)
     {
-        if (is_array($value)) {
+        if ($value instanceof Arrayable || is_array($value)) {
             return $this->whereIn($column, $value);
         }
 
         if ($column instanceof Closure) {
             return $this->using($column);
+        }
+
+        if (is_null($value)) {
+            return $this->whereNull($column);
+        }
+
+        if ($value instanceof BackedEnum) {
+            $value = $value->value;
         }
 
         $this->wheres[] = compact('column', 'value');
@@ -73,13 +112,17 @@ trait DatabaseRule
      * Set a "where not" constraint on the query.
      *
      * @param  string  $column
-     * @param  array|string  $value
+     * @param  \Illuminate\Contracts\Support\Arrayable|\BackedEnum|array|string  $value
      * @return $this
      */
     public function whereNot($column, $value)
     {
-        if (is_array($value)) {
+        if ($value instanceof Arrayable || is_array($value)) {
             return $this->whereNotIn($column, $value);
+        }
+
+        if ($value instanceof BackedEnum) {
+            $value = $value->value;
         }
 
         return $this->where($column, '!'.$value);
@@ -111,10 +154,10 @@ trait DatabaseRule
      * Set a "where in" constraint on the query.
      *
      * @param  string  $column
-     * @param  array  $values
+     * @param  \Illuminate\Contracts\Support\Arrayable|\BackedEnum|array  $values
      * @return $this
      */
-    public function whereIn($column, array $values)
+    public function whereIn($column, $values)
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereIn($column, $values);
@@ -125,14 +168,40 @@ trait DatabaseRule
      * Set a "where not in" constraint on the query.
      *
      * @param  string  $column
-     * @param  array  $values
+     * @param  \Illuminate\Contracts\Support\Arrayable|\BackedEnum|array  $values
      * @return $this
      */
-    public function whereNotIn($column, array $values)
+    public function whereNotIn($column, $values)
     {
         return $this->where(function ($query) use ($column, $values) {
             $query->whereNotIn($column, $values);
         });
+    }
+
+    /**
+     * Ignore soft deleted models during the existence check.
+     *
+     * @param  string  $deletedAtColumn
+     * @return $this
+     */
+    public function withoutTrashed($deletedAtColumn = 'deleted_at')
+    {
+        $this->whereNull($deletedAtColumn);
+
+        return $this;
+    }
+
+    /**
+     * Only include soft deleted models during the existence check.
+     *
+     * @param  string  $deletedAtColumn
+     * @return $this
+     */
+    public function onlyTrashed($deletedAtColumn = 'deleted_at')
+    {
+        $this->whereNotNull($deletedAtColumn);
+
+        return $this;
     }
 
     /**
@@ -166,7 +235,7 @@ trait DatabaseRule
     protected function formatWheres()
     {
         return collect($this->wheres)->map(function ($where) {
-            return $where['column'].','.$where['value'];
+            return $where['column'].','.'"'.str_replace('"', '""', $where['value']).'"';
         })->implode(',');
     }
 }

@@ -5,73 +5,85 @@ namespace Illuminate\Cache;
 class RedisTaggedCache extends TaggedCache
 {
     /**
-     * Forever reference key.
+     * Store an item in the cache if the key does not exist.
      *
-     * @var string
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
+     * @return bool
      */
-    const REFERENCE_KEY_FOREVER = 'forever_ref';
-    /**
-     * Standard reference key.
-     *
-     * @var string
-     */
-    const REFERENCE_KEY_STANDARD = 'standard_ref';
+    public function add($key, $value, $ttl = null)
+    {
+        $this->tags->addEntry(
+            $this->itemKey($key),
+            ! is_null($ttl) ? $this->getSeconds($ttl) : 0
+        );
+
+        return parent::add($key, $value, $ttl);
+    }
 
     /**
      * Store an item in the cache.
      *
      * @param  string  $key
-     * @param  mixed   $value
-     * @param  \DateTime|float|int|null  $minutes
-     * @return void
+     * @param  mixed  $value
+     * @param  \DateTimeInterface|\DateInterval|int|null  $ttl
+     * @return bool
      */
-    public function put($key, $value, $minutes = null)
+    public function put($key, $value, $ttl = null)
     {
-        $this->pushStandardKeys($this->tags->getNamespace(), $key);
+        if (is_null($ttl)) {
+            return $this->forever($key, $value);
+        }
 
-        parent::put($key, $value, $minutes);
+        $this->tags->addEntry(
+            $this->itemKey($key),
+            $this->getSeconds($ttl)
+        );
+
+        return parent::put($key, $value, $ttl);
     }
 
     /**
      * Increment the value of an item in the cache.
      *
      * @param  string  $key
-     * @param  mixed   $value
-     * @return void
+     * @param  mixed  $value
+     * @return int|bool
      */
     public function increment($key, $value = 1)
     {
-        $this->pushStandardKeys($this->tags->getNamespace(), $key);
+        $this->tags->addEntry($this->itemKey($key), updateWhen: 'NX');
 
-        parent::increment($key, $value);
+        return parent::increment($key, $value);
     }
 
     /**
      * Decrement the value of an item in the cache.
      *
      * @param  string  $key
-     * @param  mixed   $value
-     * @return void
+     * @param  mixed  $value
+     * @return int|bool
      */
     public function decrement($key, $value = 1)
     {
-        $this->pushStandardKeys($this->tags->getNamespace(), $key);
+        $this->tags->addEntry($this->itemKey($key), updateWhen: 'NX');
 
-        parent::decrement($key, $value);
+        return parent::decrement($key, $value);
     }
 
     /**
      * Store an item in the cache indefinitely.
      *
      * @param  string  $key
-     * @param  mixed   $value
-     * @return void
+     * @param  mixed  $value
+     * @return bool
      */
     public function forever($key, $value)
     {
-        $this->pushForeverKeys($this->tags->getNamespace(), $key);
+        $this->tags->addEntry($this->itemKey($key));
 
-        parent::forever($key, $value);
+        return parent::forever($key, $value);
     }
 
     /**
@@ -81,114 +93,37 @@ class RedisTaggedCache extends TaggedCache
      */
     public function flush()
     {
-        $this->deleteForeverKeys();
-        $this->deleteStandardKeys();
+        $this->flushValues();
+        $this->tags->flush();
 
-        return parent::flush();
+        return true;
     }
 
     /**
-     * Store standard key references into store.
+     * Flush the individual cache entries for the tags.
      *
-     * @param  string  $namespace
-     * @param  string  $key
      * @return void
      */
-    protected function pushStandardKeys($namespace, $key)
+    protected function flushValues()
     {
-        $this->pushKeys($namespace, $key, self::REFERENCE_KEY_STANDARD);
-    }
+        $entries = $this->tags->entries()
+            ->map(fn (string $key) => $this->store->getPrefix().$key)
+            ->chunk(1000);
 
-    /**
-     * Store forever key references into store.
-     *
-     * @param  string  $namespace
-     * @param  string  $key
-     * @return void
-     */
-    protected function pushForeverKeys($namespace, $key)
-    {
-        $this->pushKeys($namespace, $key, self::REFERENCE_KEY_FOREVER);
-    }
-
-    /**
-     * Store a reference to the cache key against the reference key.
-     *
-     * @param  string  $namespace
-     * @param  string  $key
-     * @param  string  $reference
-     * @return void
-     */
-    protected function pushKeys($namespace, $key, $reference)
-    {
-        $fullKey = $this->store->getPrefix().sha1($namespace).':'.$key;
-
-        foreach (explode('|', $namespace) as $segment) {
-            $this->store->connection()->sadd($this->referenceKey($segment, $reference), $fullKey);
+        foreach ($entries as $cacheKeys) {
+            $this->store->connection()->del(...$cacheKeys);
         }
     }
 
     /**
-     * Delete all of the items that were stored forever.
+     * Remove all stale reference entries from the tag set.
      *
-     * @return void
+     * @return bool
      */
-    protected function deleteForeverKeys()
+    public function flushStale()
     {
-        $this->deleteKeysByReference(self::REFERENCE_KEY_FOREVER);
-    }
+        $this->tags->flushStaleEntries();
 
-    /**
-     * Delete all standard items.
-     *
-     * @return void
-     */
-    protected function deleteStandardKeys()
-    {
-        $this->deleteKeysByReference(self::REFERENCE_KEY_STANDARD);
-    }
-
-    /**
-     * Find and delete all of the items that were stored against a reference.
-     *
-     * @param  string  $reference
-     * @return void
-     */
-    protected function deleteKeysByReference($reference)
-    {
-        foreach (explode('|', $this->tags->getNamespace()) as $segment) {
-            $this->deleteValues($segment = $this->referenceKey($segment, $reference));
-
-            $this->store->connection()->del($segment);
-        }
-    }
-
-    /**
-     * Delete item keys that have been stored against a reference.
-     *
-     * @param  string  $referenceKey
-     * @return void
-     */
-    protected function deleteValues($referenceKey)
-    {
-        $values = array_unique($this->store->connection()->smembers($referenceKey));
-
-        if (count($values) > 0) {
-            foreach (array_chunk($values, 1000) as $valuesChunk) {
-                call_user_func_array([$this->store->connection(), 'del'], $valuesChunk);
-            }
-        }
-    }
-
-    /**
-     * Get the reference key for the segment.
-     *
-     * @param  string  $segment
-     * @param  string  $suffix
-     * @return string
-     */
-    protected function referenceKey($segment, $suffix)
-    {
-        return $this->store->getPrefix().$segment.':'.$suffix;
+        return true;
     }
 }

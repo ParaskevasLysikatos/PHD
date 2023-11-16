@@ -1,27 +1,16 @@
 <?php return array (
-  'barryvdh/laravel-dompdf' => 
+  'laravel/sail' => 
   array (
     'providers' => 
     array (
-      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'PDF' => 'Barryvdh\\DomPDF\\Facade',
+      0 => 'Laravel\\Sail\\SailServiceProvider',
     ),
   ),
-  'beyondcode/laravel-dump-server' => 
+  'laravel/sanctum' => 
   array (
     'providers' => 
     array (
-      0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
-    ),
-  ),
-  'fideloper/proxy' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
+      0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     ),
   ),
   'laravel/tinker' => 
@@ -43,6 +32,24 @@
     'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    ),
+  ),
+  'nunomaduro/termwind' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Termwind\\Laravel\\TermwindServiceProvider',
+    ),
+  ),
+  'spatie/laravel-ignition' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelIgnition\\IgnitionServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Flare' => 'Spatie\\LaravelIgnition\\Facades\\Flare',
     ),
   ),
 );
